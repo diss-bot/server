@@ -1,8 +1,6 @@
 'use strict';
 require('dotenv').config();
 
-const express = require('express');
-const app = express();
 const { Client, Intents, Guild } = require('discord.js');
 const dissBotIntents = new Intents();
 
@@ -33,7 +31,8 @@ client.on('messageCreate', async (message) => {
   const splitMess = message.content.split(' ');
   // console.log(message);
   // console.log(splitMess);
-  console.log(message.author.username + message.author.discriminator);
+  console.log(message.author);
+  // console.log(message.author.username + message.author.discriminator);
   if (splitMess[0] === '$diss') {
     const command = splitMess[1];
 
@@ -57,6 +56,3 @@ client.on('messageCreate', async (message) => {
 });
 
 client.login(process.env.DIS_TOKEN);
-app.listen(3000, () => {
-  console.log('Server up on 3000');
-});
