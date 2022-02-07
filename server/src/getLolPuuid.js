@@ -5,11 +5,10 @@ const axios = require('axios');
 
 let puuid;
 
-function getPuuid() {
+function getLoLPuuid() {
   try {
-   const username = 'dariogoat';
-   const tagline = 'dgoat';
-   const url = `https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${username}/${tagline}?api_key=${process.env.RIOT_API}`;
+   const username = 'CaptimusPRIM3';
+   const url = `https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${username}?api_key=${process.env.RIOT_API}`;
    axios.get(url).then((value)=>{
       puuid = value.data.puuid;
       console.log(puuid);
@@ -20,9 +19,5 @@ function getPuuid() {
     console.log(error);
   }
  }
-getPuuid();
 
-
-
-
-//module.exports = {getPuuid};
+module.exports = {getLoLPuuid};
