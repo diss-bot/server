@@ -11,3 +11,11 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
   console.log('Mongoose is connected');
 })
+
+const createUser = require('./modules/createUser');
+
+createUser({
+  name: 'Steve',
+  puuid: '65465451',
+  games: [1, 2, 3],
+})
