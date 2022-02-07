@@ -57,6 +57,7 @@ client.on('messageCreate', async (message) => {
 });
 
 client.login(process.env.DIS_TOKEN);
+
 app.listen(3000, () => {
   console.log('Server up on 3000');
 });
