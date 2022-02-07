@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema ({
   name: String,
-  puuid: String,
-  games: Array,
+  puuid: { type: String, default: '' },
+  games: { type: Array, default: [] },
 })
 
 const User = mongoose.model('User', userSchema);

@@ -14,8 +14,12 @@ db.once('open', function () {
 
 const createUser = require('./modules/createUser');
 
-createUser({
-  name: 'Steve',
-  puuid: '65465451',
-  games: [1, 2, 3],
-})
+// createUser({
+//   name: 'Steve',
+//   puuid: '65465451',
+//   games: [1, 2, 3],
+// })
+
+module.exports = {
+  createUser,
+}

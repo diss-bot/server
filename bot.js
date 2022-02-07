@@ -1,39 +1,32 @@
 'use strict';
 require('dotenv').config();
 
-const express = require('express');
-const app = express();
 const { Client, Intents, Guild } = require('discord.js');
 const dissBotIntents = new Intents();
 
 dissBotIntents.add('GUILDS', 'GUILD_MESSAGES', 'GUILD_PRESENCES');
 const client = new Client({ intents: dissBotIntents });
 
+const server = require('./server/server.js');
+const roaster = require('./messageFunctions/roaster.js');
+const memer = require('./messageFunctions/memeMaker.js');
+const dataGetter = require('./statFunctions/dataGetter.js');
+
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-const roaster = require('./messageFunctions/roaster.js');
-const memer = require('./messageFunctions/memeMaker.js');
-const dataGetter = require('./statFunctions/dataGetter.js');
 // message is going to be the bread and butter, we need to break it down into different files / functions in order to make it easy to manage
 
 client.on('presenceUpdate', (oldPres, newPres) => {
-  // if(newPres.status === 'online') {
-  //   axios.get()
-  // }
   console.log(newPres);
-  // const guild = client.guilds.cache.get('700924821105803327');
-  // // console.log(guild);
-  // console.log(guild.members);
-  // console.log(Guild.member('692874513377001592'));
 });
 
 client.on('messageCreate', async (message) => {
   const splitMess = message.content.split(' ');
   // console.log(message);
   // console.log(splitMess);
-  console.log(message.author.username + message.author.discriminator);
+  // console.log(message.author.username + message.author.discriminator);
   if (splitMess[0] === '$diss') {
     const command = splitMess[1];
 
@@ -42,8 +35,8 @@ client.on('messageCreate', async (message) => {
       await message.reply('Please use one of the following commands: roast, meme, game');
     }
 
-    else if (command === 'roast') {
-      await roaster(message);
+    else if (command === 'signup') {
+      await server.createUser(message);
     }
 
     else if (command === 'meme') {
@@ -57,7 +50,3 @@ client.on('messageCreate', async (message) => {
 });
 
 client.login(process.env.DIS_TOKEN);
-
-app.listen(3000, () => {
-  console.log('Server up on 3000');
-});
