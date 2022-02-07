@@ -16,7 +16,7 @@ module.exports = async (message) => {
 
   let matchData = await axios.get(`https://americas.api.riotgames.com/lol/match/v5/matches/${lastMatchID}?api_key=${process.env.LEAGUE_KEY}`);
   let user = matchData.data.info.participants.filter(name => name.summonerName === 'CaptimusPRIM3');
-  let kills = user[0].kills;
+  let kills = user[0];
 
   await message.reply(`${kills}`);
 }
