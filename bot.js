@@ -58,13 +58,13 @@ client.on('messageCreate', async (message) => {
   }
 
   else if (command === 'REGISTER') {
-    console.log(userInput[0], userInput[1]);
-    let updates = {
-      author: msgAuthor,
-      game: userInput[0],
-      inGameName: userInput[1],
-    }
-    client.commands.get('REGISTER').execute(message, updates);
+    // console.log(userInput[0], userInput[1]);
+    // let updates = {
+    //   author: msgAuthor,
+    //   game: userInput[0],
+    //   inGameName: userInput[1],
+    // }
+    client.commands.get('REGISTER').execute(message);
   }
 
   else if (command === 'GAME') {
