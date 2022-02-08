@@ -23,7 +23,7 @@ client.on('messageCreate', async (message) => {
   const splitMess = message.content.split(' ');
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-  console.log(message);
+  // console.log(message);
   const command = splitMess[1].toLowerCase();
 
     // console.log(command);
@@ -38,11 +38,8 @@ client.on('messageCreate', async (message) => {
       await server.createUser(message, newUser);
     }
 
-    else if (command === 'LoL') {
-      //   let updateuser = {
-      //       ,
-      // }
-      await server.updateuser(message, updateUser);
+    else if (command === 'lol') {
+      await server.updateUser(message);
     }
 
     else if (command === 'meme') {

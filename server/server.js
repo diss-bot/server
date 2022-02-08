@@ -11,9 +11,9 @@ db.once('open', function () {
 })
 
 const createUser = require('./modules/createUser.js');
-// const updateUser = require('./modules/updateUser.js');
+const updateUser = require('./modules/updateUser.js');
 
 module.exports = {
   createUser,
-  // updateUser,
+  updateUser,
 }
