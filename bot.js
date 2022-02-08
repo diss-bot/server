@@ -49,7 +49,7 @@ client.on('messageCreate', async (message) => {
   if (!command) await message.reply('Please use one of the following commands: roast, meme, game');
 
   else if (command === 'SIGNUP') {
-    client.commands.get('SIGNUP').execute(message, { _id: msgAuthor })
+    client.commands.get('SIGNUP').execute(message, { _id: msgAuthor });
   }
 
   else if (command === 'REGISTER') {
@@ -58,8 +58,16 @@ client.on('messageCreate', async (message) => {
       author: msgAuthor,
       game: userInput[0],
       inGameName: userInput[1],
-    }
+    };
     client.commands.get('REGISTER').execute(message, updates);
+  }
+
+  else if (command === 'ROAST') {
+    let roast = {
+      user1: msgAuthor,
+      user2: userInput[0],
+    };
+    client.commands.get('ROAST').execute(message, roast);
   }
 
   else if (command === 'GAME') {
