@@ -11,4 +11,4 @@ module.exports = async (puuid) => {
   catch (error) {
     console.log(error);
   }
-}
+};

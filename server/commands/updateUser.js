@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const User = require('../models/userModel');
 
@@ -12,13 +12,13 @@ module.exports = {
           games: {
             LeagueOfLegends: {
               summonerName: updates.inGameName,
-            }
-          }
-        }
+            },
+          },
+        },
       });
       message.reply(`${userToUpdate._id} was updated`);
     } catch (e) {
       message.channel.send(`You typed something in wrong.. I don't know what but I didn't like it`);
     }
-  }
+  },
 };

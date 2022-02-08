@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema ({
@@ -28,9 +28,9 @@ const userSchema = new mongoose.Schema ({
       eliminations: { type: Number, default: 0 },
       placement: { type: Number, default: 0 },
       win: { type: Number, default: 0 },
-    }
-  }
-})
+    },
+  },
+});
 
 const User = mongoose.model('User', userSchema);
 
