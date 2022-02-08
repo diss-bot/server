@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const User = require('../models/userModel');
 
@@ -12,5 +12,5 @@ module.exports = {
     } catch (e) {
       message.channel.send(`Forgot you made an account? And I forgot to care, get outta here!`);
     }
-  }
-}
+  },
+};
