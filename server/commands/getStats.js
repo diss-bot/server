@@ -17,8 +17,9 @@ module.exports = {
       let gameInfo = await getGameInfo(matchId, puuid);
       // console.log(gameInfo);
       message.channel.send(`${gameInfo}`);
+      console.log(gameInfo);
     } catch (e) {
-      message.channel.send('Ensure you input the correct name, you dunce');
+      message.channel.send('Ensure you input the correct name, you dunce!');
     }
   },
 };

@@ -12,6 +12,12 @@ module.exports = async (matchId, puuidValue) => {
 
     let userStats = [];
 
+    console.log(userStats);
+    const { kills, deaths, assists, win } = userStats[0];
+    let ka = kills + assists;
+    let kda = ka/deaths;
+    return [kills, deaths, assists, kda, win];
+
     if(typeof(puuidValue) === 'object') {
       Object.values(puuidValue).forEach(entry => {
         userStats.push(allData.filter(participant => participant.puuid === entry)[0]);
