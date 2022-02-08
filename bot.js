@@ -54,6 +54,10 @@ client.on('messageCreate', async (message) => {
     client.commands.get('SIGNUP').execute(message, { _id: `${message.author.username}${message.author.discriminator}` })
   }
 
+  else if (command === 'LOL') {
+    client.commands.get('LOL').execute(message);
+  }
+
   else if (command === 'GAME') {
     client.commands.get('GAME').execute(message, userInput[0]);
   }
