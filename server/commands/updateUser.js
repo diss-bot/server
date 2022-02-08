@@ -11,7 +11,7 @@ module.exports = {
       // message.reply(`${userToUpdate._id} was updated`);
       console.log(`this is stuff`, userToUpdate);
     } catch (e) {
-      message.channel.send(`You typed something in wrong.. I don't know what but I didn't like it`);
+      message.channel.send(`You typed something in wrong. I don't know what but it was probably wrong.`);
       console.log(e);
     }
   }
