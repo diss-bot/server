@@ -29,9 +29,3 @@ module.exports = async (matchId, puuidValue) => {
     console.log('problem with getting game info');
   }
 };
-
-// console.log(userStats);
-// const { kills, deaths, assists, win } = userStats[0];
-// let ka = kills + assists;
-// let kda = ka / deaths;
-// return [kills, deaths, assists, kda, win];

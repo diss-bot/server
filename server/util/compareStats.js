@@ -28,17 +28,13 @@ module.exports = async (user1, user2) => {
   } else {
     player1Stats = await getGameInfo(player1Match, player1);
     player2Stats = await getGameInfo(player2Match, player2);
-    console.log(player1Stats, player2Stats);
+    console.log('RIGHT HERE', player1Stats, player2Stats);
   }
 
-  let player1KDA = (player1Stats[0] += player1Stats[2]) / player1Stats[1];
-  let player2KDA = (player2Stats[0] += player2Stats[2]) / player2Stats[1];
-
-  console.log(player1KDA, player2KDA);
-  if (player1KDA > player2KDA) {
-    return `${user1} whooped ${user2}s ass!`;
-  } else if (player2KDA > player1KDA) {
-    return `${user2} whooped ${user1}s ass!`;
+  if (player1Stats[3] > player2Stats[3]) {
+    return `${user1} whooped ${user2}'s ass!`;
+  } else if (player2Stats[3] > player1Stats[3]) {
+    return `${user2} whooped ${user1}'s ass!`;
   } else {
     return `I guess you're both losers`;
   }

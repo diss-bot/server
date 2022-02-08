@@ -21,8 +21,3 @@ function getPuuid() {
   }
 }
 getPuuid();
-
-
-
-
-//module.exports = {getPuuid};
