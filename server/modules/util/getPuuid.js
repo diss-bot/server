@@ -10,11 +10,11 @@ function getPuuid() {
     const username = 'dariogoat';
     const tagline = 'dgoat';
     const url = `https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${username}/${tagline}?api_key=${process.env.RIOT_API}`;
-    axios.get(url).then((value)=>{
+    axios.get(url).then((value) => {
       puuid = value.data.puuid;
       console.log(puuid);
     });
-  // console.log(Data.data);
+    // console.log(Data.data);
   }
   catch (error) {
     console.log(error);
