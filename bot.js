@@ -51,7 +51,7 @@ client.on('messageCreate', async (message) => {
   if (!command) await message.reply('Please use one of the following commands: roast, meme, game');
 
   else if (command === 'SIGNUP') {
-    client.commands.get('SIGNUP').execute(message, { _id: `${message.author.username}${message.author.discriminator}`, name: `${message.author.username}${message.author.discriminator}` })
+    client.commands.get('SIGNUP').execute(message, { _id: `${message.author.username}${message.author.discriminator}` })
   }
 
   else if (command === 'GAME') {
