@@ -16,7 +16,9 @@ module.exports = async (matchId, puuid) => {
 
     console.log(userStats);
     const { kills, deaths, assists, win } = userStats[0];
-    return [kills, deaths, assists, win];
+    let ka = kills + assists;
+    let kda = ka/deaths;
+    return [kills, deaths, assists, kda, win];
   }
   catch (error) {
     console.log(error);
