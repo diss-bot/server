@@ -1,34 +1,30 @@
 'use strict';
 require('dotenv').config();
 
-const { Client, Intents, Guild } = require('discord.js');
+const { Client, Intents } = require('discord.js');
 const dissBotIntents = new Intents();
-
 dissBotIntents.add('GUILDS', 'GUILD_MESSAGES', 'GUILD_PRESENCES');
 const client = new Client({ intents: dissBotIntents });
 
 const server = require('./server/server.js');
-const roaster = require('./messageFunctions/roaster.js');
 const memer = require('./messageFunctions/memeMaker.js');
-const dataGetter = require('./statFunctions/dataGetter.js');
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-// message is going to be the bread and butter, we need to break it down into different files / functions in order to make it easy to manage
-
 client.on('presenceUpdate', (oldPres, newPres) => {
-  console.log(newPres);
+  // console.log(newPres);
 });
+
+const prefix = '$diss';
 
 client.on('messageCreate', async (message) => {
   const splitMess = message.content.split(' ');
-  // console.log(message);
-  // console.log(splitMess);
-  // console.log(message.author.username + message.author.discriminator);
-  if (splitMess[0] === '$diss') {
-    const command = splitMess[1];
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+  console.log(message);
+  const command = splitMess[1].toLowerCase();
 
     // console.log(command);
     if (!command) {
@@ -36,7 +32,17 @@ client.on('messageCreate', async (message) => {
     }
 
     else if (command === 'signup') {
-      await server.createUser(message);
+      let newUser = {
+        name: `${message.author.username}${message.author.discriminator}`,
+      }
+      await server.createUser(message, newUser);
+    }
+
+    else if (command === 'LoL') {
+      //   let updateuser = {
+      //       ,
+      // }
+      await server.updateuser(message, updateUser);
     }
 
     else if (command === 'meme') {
@@ -46,7 +52,6 @@ client.on('messageCreate', async (message) => {
     else if (command === 'game') {
       await dataGetter(message);
     }
-  }
 });
 
 client.login(process.env.DIS_TOKEN);
