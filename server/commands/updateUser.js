@@ -7,18 +7,15 @@ module.exports = {
   description: 'Initializes desired game stat tracking',
   async execute(message, updates) {
     try {
-      let userToUpdate = await User.findByIdAndUpdate(updates.author, {
-        $set: {
-          games: {
-            LeagueOfLegends: {
-              summonerName: updates.inGameName,
-            },
-          },
-        },
-      });
-      message.reply(`${userToUpdate._id} was updated`);
+      let userToUpdate = await User.find({_id: `Captimus_Prime9557`});
+      // message.reply(`${userToUpdate._id} was updated`);
+      console.log(`this is stuff`, userToUpdate);
     } catch (e) {
       message.channel.send(`You typed something in wrong.. I don't know what but I didn't like it`);
+      console.log(e);
     }
   },
 };
+
+
+//.schema.obj.games

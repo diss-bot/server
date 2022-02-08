@@ -58,6 +58,7 @@ client.on('messageCreate', async (message) => {
   }
 
   else if (command === 'REGISTER') {
+
     console.log(userInput[0], userInput[1]);
     let updates = {
       author: msgAuthor,
