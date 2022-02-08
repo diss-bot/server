@@ -28,6 +28,15 @@ const userSchema = new mongoose.Schema ({
       eliminations: { type: Number, default: 0 },
       placement: { type: Number, default: 0 },
       win: { type: Number, default: 0 },
+    },
+    Apex: {
+      summonerName: { type: String, default: '' },
+      kills: { type: Number, default: 0 },
+      deaths: { type: Number, default: 0 },
+      assists: { type: Number, default: 0 },
+      KDA: { type: Number, default: 0 },
+      placement: { type: Number, default: 0 },
+      win: { type: Number, default: 0 },
     }
   }
 })

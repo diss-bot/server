@@ -14,12 +14,13 @@ const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
   console.log('Mongoose is connected');
-})
+});
 
 // creates Discord Collection to hold all commands for diss-bot
 const fs = require('fs');
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./server/commands').filter(file => file.endsWith('.js'));
+console.log(commandFiles);
 for (const file of commandFiles) {
   const command = require(`./server/commands/${file}`);
   client.commands.set(command.name, command);
@@ -50,6 +51,10 @@ client.on('messageCreate', async (message) => {
 
   else if (command === 'SIGNUP') {
     client.commands.get('SIGNUP').execute(message, { _id: msgAuthor })
+  }
+
+  else if (command === 'HELP') {
+    client.commands.get('HELP').execute(message, userInput, Discord);
   }
 
   else if (command === 'REGISTER') {
