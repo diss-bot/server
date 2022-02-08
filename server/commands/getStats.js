@@ -20,5 +20,5 @@ module.exports = {
     } catch (e) {
       message.channel.send('Ensure you input the correct name, you dunce');
     }
-  }
-}
+  },
+};

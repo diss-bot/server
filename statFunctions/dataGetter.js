@@ -19,4 +19,4 @@ module.exports = async (message) => {
   let kills = user[0];
 
   await message.reply(`${kills}`);
-}
+};
