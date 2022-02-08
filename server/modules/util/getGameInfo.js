@@ -9,11 +9,12 @@ module.exports = async (matchId, puuid) => {
     const Data = await axios.get(url);
 
     const allData = Data.data.info.participants;
-    const userStats = allData.filter(participant => participant.puuid === puuid);
+    // const userStats = allData.filter(participant => participant.puuid === puuid);
 
     // this can be used to get numerous users' data from the same game
-    // const userStats = allData.filter(participant => participant.puuid === puuid || participant.puuid === 'zKHrb2YkSPJHIzjC_3pLefOQjTSNlGZ7blOmCAstwAy7BOkrMRKKkQMHbRmoHImNSqbKZ7xRdJM4Hw');
+    const userStats = allData.filter(participant => participant.puuid === puuid || participant.puuid === 'zKHrb2YkSPJHIzjC_3pLefOQjTSNlGZ7blOmCAstwAy7BOkrMRKKkQMHbRmoHImNSqbKZ7xRdJM4Hw');
 
+    console.log(userStats);
     const { kills, deaths, assists, win } = userStats[0];
     return [kills, deaths, assists, win];
   }
