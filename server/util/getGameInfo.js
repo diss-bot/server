@@ -12,13 +12,7 @@ module.exports = async (matchId, puuidValue) => {
 
     let userStats = [];
 
-    console.log(userStats);
-    const { kills, deaths, assists, win } = userStats[0];
-    let ka = kills + assists;
-    let kda = ka/deaths;
-    return [kills, deaths, assists, kda, win];
-
-    if(typeof(puuidValue) === 'object') {
+    if (typeof (puuidValue) === 'object') {
       Object.values(puuidValue).forEach(entry => {
         userStats.push(allData.filter(participant => participant.puuid === entry)[0]);
         const { kills, deaths, assists, win } = userStats.pop();
@@ -27,10 +21,17 @@ module.exports = async (matchId, puuidValue) => {
     } else {
       userStats.push(allData.filter(participant => participant.puuid === puuidValue)[0]);
       const { kills, deaths, assists, win } = userStats[0];
-      return [kills, deaths, assists, win];
+      let kda = (kills + assists) / deaths;
+      return [kills, deaths, assists, kda, win];
     }
   }
   catch (error) {
-    console.log(error);
+    console.log('problem with getting game info');
   }
 };
+
+// console.log(userStats);
+// const { kills, deaths, assists, win } = userStats[0];
+// let ka = kills + assists;
+// let kda = ka / deaths;
+// return [kills, deaths, assists, kda, win];
