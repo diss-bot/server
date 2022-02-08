@@ -11,6 +11,6 @@ module.exports = async (inGameName) => {  // will add game to make this function
     return puuid;
   }
   catch (error) {
-    console.log(error);
+    console.log('problem with get lol puuid');
   }
 };

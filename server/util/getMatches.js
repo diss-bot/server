@@ -9,6 +9,6 @@ module.exports = async (puuid) => {
     return Data.data[0];
   }
   catch (error) {
-    console.log(error);
+    console.log('problem with get match', error.message);
   }
 };
