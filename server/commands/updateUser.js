@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const User = require('../models/userModel');
 
@@ -14,7 +14,7 @@ module.exports = {
       message.channel.send(`You typed something in wrong.. I don't know what but I didn't like it`);
       console.log(e);
     }
-  }
+  },
 };
 
 
