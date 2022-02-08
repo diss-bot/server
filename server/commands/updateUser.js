@@ -3,15 +3,15 @@
 const User = require('../models/userModel');
 
 module.exports = {
-  name: 'LOL',
-  description: 'Initializes LeagueOfLegends stat tracking',
-  async execute(message, body) {
+  name: 'REGISTER',
+  description: 'Initializes desired game stat tracking',
+  async execute(message, updates) {
     try {
-      let userToUpdate = await User.findByIdAndUpdate('Captimus_Prime9557', {
+      let userToUpdate = await User.findByIdAndUpdate(updates.author, {
         $set: {
           games: {
             LeagueOfLegends: {
-              kills: 10,
+              summonerName: updates.inGameName,
             }
           }
         }
