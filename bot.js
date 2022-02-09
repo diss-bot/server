@@ -68,6 +68,7 @@ client.on('messageCreate', async (message) => {
       author: msgAuthor,
       game: userInput[0],
       inGameName: userInput[1],
+      tagline: userInput[2],
     };
     client.commands.get('REGISTER').execute(message, updates);
   }
