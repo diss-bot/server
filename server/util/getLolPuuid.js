@@ -8,6 +8,7 @@ module.exports = async (inGameName) => {  // will add game to make this function
     const url = `https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${inGameName}?api_key=${process.env.RIOT_KEY}`;
     let value = await axios.get(url);
     let puuid = value.data.puuid;
+    console.log(puuid);
     return puuid;
   }
   catch (error) {
