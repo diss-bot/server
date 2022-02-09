@@ -38,8 +38,6 @@ const prefix = '$diss';
 
 client.on('messageCreate', async (message) => {
   message.msgAuthor = message.author.id;
-  console.log(typeof (message.author.id));
-  console.log(typeof (message.msgAuthor));
   // breaks message content to parse what the user is telling the bot to do
   const messageContentArray = message.content.split(' ');
   // returns if the bot is making the command to avoid infinite loops, or if the message does not start with the correct prefix '$diss'

@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema ({
   _id: String, // this is just the user's name within Discord
-  // name: String,
+  name: String,
   puuid: { type: String, default: '' },
   games: {
     LeagueOfLegends: {
