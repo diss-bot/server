@@ -1,7 +1,7 @@
 'use strict';
 
-const User = require('../models/userModel');
-const statGetter = require('../util/getLatestStats.js');
+const getStatsHelper = require('../util/getStatsHelper.js');
+const getPuuidHelper = require('../util/getPuuidHelper.js');
 
 module.exports = {
   name: 'STATS',
@@ -9,9 +9,10 @@ module.exports = {
   async execute(message, game) {
     let requestObj = {
       gameName: game,
-      puuid: puuid,
+      puuid: await getPuuidHelper(message.msgAuthor)
     }
-    let data = await statGetter(requestObj)
-    return data;
+    let data = await getStatsHelper(requestObj)
+    let { kills, deaths, assists, kda, win, matchId } = data
+    message.channel.send(`${kills} ${deaths} ${assists} ${kda} ${win} ${matchId}`);
   },
 };
