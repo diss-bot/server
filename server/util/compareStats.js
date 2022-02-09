@@ -1,32 +1,26 @@
 'use strict';
 
 const getStatsHelper = require('./getStatsHelper.js');
+const getPuuidHelper = require('./getPuuidHelper.js');
 
-module.exports = async (user, usersToCompare) => {
+module.exports = async (user, game, usersToCompare) => {
+  let finalArr = [];
   let userArray = [{
-    gameName: 'lol',
-    discordName: user,
+    gameName: game,
+    discordId: user,
+    puuid: '',
   }];
 
-  Object.entries(usersToCompare).forEach(user => {
-    userArray.push(user);
+  Object.values(usersToCompare).forEach(user => {
+    userArray.push({ gameName: game, discordId: user, puuid: '' });
   })
 
-  console.log(userArray);
-  // let requestObjOne = {
-  //   gameName: 'lol',
-  //   discordName: user,
-  // }
-  // let userData = await getStatsHelper(requestObjOne)
-  // finalArr.push(userData);
-  // console.log(finalArr);
-  // let requestObjTwo = {
-  //   gameName: 'lol',
-  //   discordName: user2,
-  // }
-
-  // let player1Stats = await getStatsHelper(requestObjOne);
-  // let player2Stats = await getStatsHelper(requestObjTwo);
+  for (let user of userArray) {
+    user.puuid = await getPuuidHelper(user.discordId);
+    let data = await getStatsHelper(user);
+    finalArr.push(data);
+    console.log(finalArr);
+  }
 
   // if (player1Stats.kda > player2Stats.kda) {
   //   return `${user1} whooped ${user2}'s ass!`;
