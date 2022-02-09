@@ -1,6 +1,6 @@
 'use strict'
 
-
+let data = require('../../public/help.json');
 
 module.exports = {
   name: 'HELP',
@@ -10,10 +10,9 @@ module.exports = {
       .setTitle(data.title)
       .setColor(data.color)
       .setThumbnail(data.color)
-      .setDescription(data.description)
+      .setDescription('')
       .addFields(
         data.fields.map(obj => ({ name: obj.name, value: obj.value }))
-
       );
     console.log(embed);
     message.channel.send({ embeds: [embed] });

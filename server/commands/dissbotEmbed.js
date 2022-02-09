@@ -1,4 +1,5 @@
 'use strict'
+
 let data = require('../../public/help.json');
 let helpData = require('../../public/help.json');
 
