@@ -62,15 +62,12 @@ client.on('messageCreate', async (message) => {
   }
 
   else if (command === 'REGISTER') {
-
-    console.log(userInput[0], userInput[1]);
-    let updates = {
-      author: message.msgAuthor,
+    let registerInfo = {
       game: userInput[0],
       inGameName: userInput[1],
-      tagline: userInput[2],
+      tagline: userInput[2], // used to register for puuid using Valorant API
     };
-    client.commands.get('REGISTER').execute(message, updates);
+    client.commands.get('REGISTER').execute(message, registerInfo);
   }
 
   else if (command === 'ROAST') {
