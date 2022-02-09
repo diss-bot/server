@@ -1,7 +1,6 @@
 'use strict'
 
 let data = require('../../public/help.json');
-let helpData = require('../../public/help.json');
 
 module.exports = {
   name: 'HELP',
@@ -11,14 +10,9 @@ module.exports = {
       .setTitle(data.title)
       .setColor(data.color)
       .setThumbnail(data.color)
-      .setDescription(helpData.description)
+      .setDescription('')
       .addFields(
-        helpData.fields.map(obj => ({ name: obj.name, value: obj.value }))
-        // { name: data.fields[0].name, value: data.fields[0].value },
-        // { name: data.fields[1].name, value: data.fields[1].value },
-        // { name: data.fields[2].name, value: data.fields[2].value },
-        // { name: data.fields[3].name, value: data.fields[3].value },
-
+        data.fields.map(obj => ({ name: obj.name, value: obj.value }))
       );
     console.log(embed);
     message.channel.send({ embeds: [embed] });
@@ -27,3 +21,6 @@ module.exports = {
     // }
   }
 };
+
+// Object.keys(objectName)
+// Object.values(objectName)
