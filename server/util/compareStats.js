@@ -1,14 +1,14 @@
 'use strict';
 
 const getStatsHelper = require('./getStatsHelper.js');
-const getPuuidHelper = require('./getPuuidHelper.js');
+const getUserDbHelper = require('./getUserDbHelper.js');
 const updateDbStatsHelper = require('./updateDbStatsHelper.js');
 
-module.exports = async (user, game, usersToCompare) => {
+module.exports = async (message, game, usersToCompare) => {
   let finalArr = [];
   let userArray = [{
     gameName: game,
-    discordId: user,
+    discordId: message.msgAuthor,
   }];
 
   Object.values(usersToCompare).forEach(user => {
@@ -16,9 +16,17 @@ module.exports = async (user, game, usersToCompare) => {
   })
 
   for (let user of userArray) {
-    user.puuid = await getPuuidHelper(user.discordId); // getting puuid from database using the discordId, which is unique
-    user.data = await getStatsHelper(user); // retrieves stats from latest match, which will be used to diss / update db
-    await updateDbStatsHelper(user);
+    if (user.discordId) {
+      let userFromDb = await getUserDbHelper(user.discordId); // getting puuid from database using the discordId, which is unique
+      user.puuid = userFromDb.puuid;
+      user.latestMatches = {
+        lolLatestMatch: userFromDb.games.LeagueOfLegends.latestMatchId,
+        valLatestMatch: userFromDb.games.Valorant.latestMatchId,
+        tftLatestMatch: userFromDb.games.TeamFightTactics.latestMatchId,
+      }
+      user.data = await getStatsHelper(user); // retrieves stats from latest match, which will be used to diss / update db
+      await updateDbStatsHelper(user);
+    }
     // finalArr.push(user);
     // console.log(finalArr);
   }

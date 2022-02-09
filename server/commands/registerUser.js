@@ -48,28 +48,8 @@ module.exports = {
       //   });
       //   // console.log(updatedUser);
       // }
-
-
-
-
     } catch (e) {
       message.channel.send(`You did something wrong... it might be - ${e.message}`);
     }
   }
 }
-
-
- // let updates = {
-      //   TeamFightTactics: {
-      //     summonerName: '',
-      //     placement: 4,
-      //     wins: 1,
-      //   },
-      // };
-
-// $inc: {
-        //   "games.TeamFightTactics.win": updates.TeamFightTactics.wins,
-        //   "games.TeamFightTactics.placement": updates.TeamFightTactics.placement,
-        // },
-
-//.schema.obj.games

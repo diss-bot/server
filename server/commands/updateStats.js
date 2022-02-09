@@ -1,7 +1,7 @@
 'use strict';
 
 const getStatsHelper = require('../util/getStatsHelper.js');
-const getPuuidHelper = require('../util/getPuuidHelper.js');
+// const getPuuidHelper = require('../util/getPuuidHelper.js');
 
 module.exports = {
   name: 'STATS',
