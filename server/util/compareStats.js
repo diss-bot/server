@@ -19,6 +19,23 @@ module.exports = async (message, game, usersToCompare) => {
     if (user.discordId) {
       let userFromDb = await getUserDbHelper(user.discordId); // getting puuid from database using the discordId, which is unique
       user.puuid = userFromDb.puuid;
+      user.stats = {
+        lolKDA: {
+          kills: userFromDb.games.LeagueOfLegends.kills,
+          assists: userFromDb.games.LeagueOfLegends.asists,
+          deaths: userFromDb.games.LeagueOfLegends.deaths
+        },
+          valKDA: {
+          kills: userFromDb.games.Valorant.kills,
+          assists: userFromDb.games.Valorant.asists,
+          deaths: userFromDb.games.Valorant.deaths
+          }
+      }
+      user.matchesPlayed = {
+        lolMatchesPlayed: userFromDb.games.LeagueOfLegends.matchesPlayed,
+        valMatchesPlayed: userFromDb.games.Valorant.matchesPlayed,
+        tftMatchesPlayed: userFromDb.games.TeamFightTactics.matchesPlayed,
+      }
       user.latestMatches = {
         lolLatestMatch: userFromDb.games.LeagueOfLegends.latestMatchId,
         valLatestMatch: userFromDb.games.Valorant.latestMatchId,

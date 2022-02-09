@@ -15,10 +15,11 @@ module.exports = async function (userStatsObject) {
         "games.LeagueOfLegends.deaths": deaths,
         "games.LeagueOfLegends.assists": assists,
         "games.LeagueOfLegends.win": winNum,
+        "games.LeagueOfLegends.matchesPlayed": 1,
       },
       $set: {
         "games.LeagueOfLegends.latestMatchId": matchId,
-        // "games.LeagueOfLegends.KDA": matchId,
+        "games.LeagueOfLegends.KDA": ((userStatsObject.KDAs.lolKDA += kda) / 2),
       },
     });
     console.log(`${userStatsObject.discordId}'s stats have been updated`);

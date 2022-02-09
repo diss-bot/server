@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema ({
     LeagueOfLegends: {
       summonerName: { type: String, default: '' },
       latestMatchId: { type: String, default: '' },
+      matchesPlayed: { type: Number, default: 0 },
       kills: { type: Number, default: 0 },
       deaths: { type: Number, default: 0 },
       assists: { type: Number, default: 0 },
@@ -18,6 +19,7 @@ const userSchema = new mongoose.Schema ({
     Valorant: {
       gamerName: { type: String, default: '' },
       latestMatchId: { type: String, default: '' },
+      matchesPlayed: { type: Number, default: 0 },
       tagline: { type: String, default: '' },
       kills: { type: Number, default: 0 },
       deaths: { type: Number, default: 0 },
@@ -28,16 +30,8 @@ const userSchema = new mongoose.Schema ({
     TeamFightTactics: {
       summonerName: { type: String, default: '' },
       latestMatchId: { type: String, default: '' },
+      matchesPlayed: { type: Number, default: 0 },
       eliminations: { type: Number, default: 0 },
-      placement: { type: Number, default: 0 },
-      win: { type: Number, default: 0 },
-    },
-    Apex: {
-      summonerName: { type: String, default: '' },
-      kills: { type: Number, default: 0 },
-      deaths: { type: Number, default: 0 },
-      assists: { type: Number, default: 0 },
-      KDA: { type: Number, default: 0 },
       placement: { type: Number, default: 0 },
       win: { type: Number, default: 0 },
     }
