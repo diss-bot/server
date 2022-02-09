@@ -1,7 +1,7 @@
 'use strict';
 
 const User = require('../models/userModel');
-const getLolPuuid = require('../util/getLolPuuid.js');
+const getLolPuuid = require('../util/League/getLolPuuid.js');
 
 module.exports = {
   name: 'REGISTER',
