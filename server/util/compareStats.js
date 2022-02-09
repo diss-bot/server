@@ -1,7 +1,7 @@
 'use strict';
 
-const getMatch = require('./getMatches.js');
-const getGameInfo = require('./getGameInfo.js');
+const getMatch = require('./League/getLolMatches.js');
+const getGameInfo = require('./League/getLolGameInfo.js');
 const User = require('../models/userModel');
 
 module.exports = async (user1, user2) => {

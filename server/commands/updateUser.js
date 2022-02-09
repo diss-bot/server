@@ -23,10 +23,6 @@ module.exports = {
       let updatedUser = await User.findByIdAndUpdate(`Captimus_Prime#9557`, {
         $inc: {
           "games.TeamFightTactics.win": updates.TeamFightTactics.wins,
-          "games.TeamFightTactics.placement": updates.TeamFightTactics.placement,
-        },
-        $set: {
-          "games.TeamFightTactics.summonerName": "I'm bricked right now"
         }
       });
 
