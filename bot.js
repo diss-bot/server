@@ -57,6 +57,10 @@ client.on('messageCreate', async (message) => {
     client.commands.get('HELP').execute(message, userInput, Discord);
   }
 
+  else if (command === 'STATS') {
+    client.commands.get('STATS').execute(message, userInput[0]);
+  }
+
   else if (command === 'REGISTER') {
 
     console.log(userInput[0], userInput[1]);

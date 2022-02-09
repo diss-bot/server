@@ -8,24 +8,21 @@ const getTFTMatches = require('./TFT/getTFTMatches.js'); // this is also an asyn
 const getTFTGameInfo = require('./TFT/getTFTGameInfo.js');
 
 module.exports = async function (requestObject) {
-  let { gameName, user } = requestObject;
+  let { puuid, gameName } = requestObject;
 
-  if (gameName === 'LoL') {
-    let puuid = await getLolPuuid(user.inGameName);
-    if (!puuid) throw new Error('user not found');
+  if (gameName.toUpperCase() === 'LOL') {
     let matchId = await getLolMatches(puuid);
     let gameInfo = await getLolGameInfo(matchId, puuid);
     // message.channel.send(`${gameInfo}`);
-    console.log(gameInfo);
+    return gameInfo;
   }
 
-  if (gameName === 'TFT') {
-    let puuid = await getTFTPuuid(user.inGameName);
-    if (!puuid) throw new Error('user not found');
+  if (gameName.toUpperCase() === 'TFT') {
+    console.log('in there');  
     let matchId = await getTFTMatches(puuid);
     let gameInfo = await getTFTGameInfo(matchId, puuid);
     // message.channel.send(`${gameInfo}`);
-    console.log(gameInfo);
+    return gameInfo;
   }
 
   // if (gameName === 'Valorant') {
