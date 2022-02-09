@@ -1,33 +1,30 @@
 'use strict';
 
 const getStatsHelper = require('./getStatsHelper.js');
+const getPuuidHelper = require('./getPuuidHelper.js');
+const updateDbStatsHelper = require('./updateDbStatsHelper.js');
 
-module.exports = async (user, usersToCompare) => {
+module.exports = async (user, game, usersToCompare) => {
+  let finalArr = [];
   let userArray = [{
-    gameName: 'lol',
-    discordName: user,
+    gameName: game,
+    discordId: user,
   }];
 
-  Object.entries(usersToCompare).forEach(user => {
-    userArray.push(user);
+  Object.values(usersToCompare).forEach(user => {
+    userArray.push({ gameName: game, discordId: user, puuid: '' });
   })
 
-  console.log(userArray);
-  // let requestObjOne = {
-  //   gameName: 'lol',
-  //   discordName: user,
-  // }
-  // let userData = await getStatsHelper(requestObjOne)
-  // finalArr.push(userData);
-  // console.log(finalArr);
-  // let requestObjTwo = {
-  //   gameName: 'lol',
-  //   discordName: user2,
-  // }
+  for (let user of userArray) {
+    user.puuid = await getPuuidHelper(user.discordId); // getting puuid from database using the discordId, which is unique
+    user.data = await getStatsHelper(user); // retrieves stats from latest match, which will be used to diss / update db
+    await updateDbStatsHelper(user);
+    // finalArr.push(user);
+    // console.log(finalArr);
+  }
 
-  // let player1Stats = await getStatsHelper(requestObjOne);
-  // let player2Stats = await getStatsHelper(requestObjTwo);
 
+  // finalArr.
   // if (player1Stats.kda > player2Stats.kda) {
   //   return `${user1} whooped ${user2}'s ass!`;
   // } else if (player2Stats.kda > player1Stats.kda) {
