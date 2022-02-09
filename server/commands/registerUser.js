@@ -1,7 +1,7 @@
 'use strict';
 
 const User = require('../models/userModel');
-const getPuuid = require('../util/getPuuid.js');
+const getPuuid = require('../util/setPuuidHelper.js');
 
 module.exports = {
   name: 'REGISTER',

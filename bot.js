@@ -37,7 +37,9 @@ client.on('ready', () => {
 const prefix = '$diss';
 
 client.on('messageCreate', async (message) => {
-  message.msgAuthor = `${message.author.username}#${message.author.discriminator}`;
+  message.msgAuthor = message.author.id;
+  console.log(typeof (message.author.id));
+  console.log(typeof (message.msgAuthor));
   // breaks message content to parse what the user is telling the bot to do
   const messageContentArray = message.content.split(' ');
   // returns if the bot is making the command to avoid infinite loops, or if the message does not start with the correct prefix '$diss'
@@ -71,8 +73,9 @@ client.on('messageCreate', async (message) => {
   }
 
   else if (command === 'ROAST') {
-    let user = userInput[0];
-    client.commands.get('ROAST').execute(message, user);
+    console.log(userInput[0]);
+    let users = { userOne: userInput[0], userTwo: userInput[1], userThree: userInput[2] };
+    client.commands.get('ROAST').execute(message, users);
   }
 
   else if (command === 'GAME') {

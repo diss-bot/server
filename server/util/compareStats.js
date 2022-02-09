@@ -1,25 +1,38 @@
 'use strict';
 
-const statGetter = require('./getLatestStats.js');
+const getStatsHelper = require('./getStatsHelper.js');
 
-module.exports = async (user1, user2) => {
-  let requestObjOne = {
+module.exports = async (user, usersToCompare) => {
+  let userArray = [{
     gameName: 'lol',
-    discordName: user1,
-  }
-  let requestObjTwo = {
-    gameName: 'lol',
-    discordName: user2,
-  }
+    discordName: user,
+  }];
 
-  let player1Stats = await statGetter(requestObjOne);
-  let player2Stats = await statGetter(requestObjTwo);
+  Object.entries(usersToCompare).forEach(user => {
+    userArray.push(user);
+  })
 
-  if (player1Stats[3] > player2Stats[3]) {
-    return `${user1} whooped ${user2}'s ass!`;
-  } else if (player2Stats[3] > player1Stats[3]) {
-    return `${user2} whooped ${user1}'s ass!`;
-  } else {
-    return `I guess you're both losers`;
-  }
+  console.log(userArray);
+  // let requestObjOne = {
+  //   gameName: 'lol',
+  //   discordName: user,
+  // }
+  // let userData = await getStatsHelper(requestObjOne)
+  // finalArr.push(userData);
+  // console.log(finalArr);
+  // let requestObjTwo = {
+  //   gameName: 'lol',
+  //   discordName: user2,
+  // }
+
+  // let player1Stats = await getStatsHelper(requestObjOne);
+  // let player2Stats = await getStatsHelper(requestObjTwo);
+
+  // if (player1Stats.kda > player2Stats.kda) {
+  //   return `${user1} whooped ${user2}'s ass!`;
+  // } else if (player2Stats.kda > player1Stats.kda) {
+  //   return `${user2} whooped ${user1}'s ass!`;
+  // } else {
+  //   return `I guess you're both losers`;
+  // }
 }
