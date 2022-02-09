@@ -71,13 +71,13 @@
   "wins": [
     {
       "1": "You're the best player in the lobby! Great job!",
-      "2": "You nearly lost but thankfully you outskilled a bunch of bots.",
+      "2": "You played an excellent game and deserved the win.",
       "3": "Your opponent played very well, but you were better.",
-      "4": "Although you may have won your game, you didn't play very well.",
-      "5": "Even though you only won because the other team was terrible, I still think you're a good player :).",
+      "4": "Even though you only won because the other team was terrible, I still think you're a good player :).",
+      "5": "Although you may have won your game, you didn't play very well.",
       "6": "Good job! I didn't think you had it in you to win.",
       "7": "That victory was impressive, for a newbie.",
-      "8": "You played an excellent game and deserved the win.",
+      "8": "You nearly lost but thankfully you outskilled a bunch of bots.",
       "9": "How does it feel to beat a bunch of little kids?",
       "10": "Nice job on the win. You showed those bots <3."
     }
