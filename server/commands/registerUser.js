@@ -19,7 +19,7 @@ module.exports = {
             "games.LeagueOfLegends.summonerName": inGameName, "puuid": userPuuid
           },
         });
-        message.channel.send(`${message.msgAuthor}'s in game name for League has been updated.. prepare to get dissed.`)
+        message.channel.send(`${message.author.username}'s in game name for League has been updated.. prepare to get dissed.`)
       } else if (game.toLowerCase() === 'tft') {
 
         await User.findByIdAndUpdate(message.msgAuthor, {
@@ -27,7 +27,7 @@ module.exports = {
             "games.TeamFightTactics.summonerName": inGameName, "puuid": userPuuid
           },
         });
-        message.channel.send(`${message.msgAuthor}'s in game name for TFT has been updated.. prepare to get dissed.`)
+        message.channel.send(`${message.author.username}'s in game name for TFT has been updated.. prepare to get dissed.`)
       } else if (game.toLowerCase() === 'val') {
 
         await User.findByIdAndUpdate(message.msgAuthor, {
@@ -35,7 +35,7 @@ module.exports = {
             "games.Valorant.gamerName": inGameName, "games.Valorant.tagline": tagline, "puuid": userPuuid
           },
         });
-        message.channel.send(`${message.msgAuthor}'s in game name for Valorant has been updated.. prepare to get dissed.`)
+        message.channel.send(`${message.author.username}'s in game name for Valorant has been updated.. prepare to get dissed.`)
       } else {
         throw new Error('Incorrect game, try one of the ones I actually support like League, TFT, or Valorant')
       }
