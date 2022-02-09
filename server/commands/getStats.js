@@ -1,8 +1,8 @@
 'use strict';
 
-const getLoLPuuid = require('../modules/util/getLolPuuid.js'); // this is async function, use async/await when calling
-const getMatches = require('../modules/util/getMatches.js'); // this is also an async function, use async/await when calling
-const getGameInfo = require('../modules/util/getGameInfo.js');
+const getLoLPuuid = require('../util/League/getLolPuuid.js'); // this is async function, use async/await when calling
+const getMatches = require('../util/League/getLolMatches.js'); // this is also an async function, use async/await when calling
+const getGameInfo = require('../util/League/getLolGameInfo.js');
 
 module.exports = {
   name: 'GAME',

@@ -37,7 +37,7 @@ client.on('ready', () => {
 const prefix = '$diss';
 
 client.on('messageCreate', async (message) => {
-  const msgAuthor = `${message.author.username}${message.author.discriminator}`;
+  const msgAuthor = `${message.author.username}#${message.author.discriminator}`;
   // breaks message content to parse what the user is telling the bot to do
   const messageContentArray = message.content.split(' ');
   // returns if the bot is making the command to avoid infinite loops, or if the message does not start with the correct prefix '$diss'
@@ -57,6 +57,10 @@ client.on('messageCreate', async (message) => {
     client.commands.get('HELP').execute(message, userInput, Discord);
   }
 
+  else if (command === 'STATS') {
+    client.commands.get('STATS').execute(message, userInput[0]);
+  }
+
   else if (command === 'REGISTER') {
 
     console.log(userInput[0], userInput[1]);
@@ -69,11 +73,11 @@ client.on('messageCreate', async (message) => {
   }
 
   else if (command === 'ROAST') {
-    let roast = {
+    let users = {
       user1: msgAuthor,
       user2: userInput[0],
     };
-    client.commands.get('ROAST').execute(message, roast);
+    client.commands.get('ROAST').execute(message, users);
   }
 
   else if (command === 'GAME') {

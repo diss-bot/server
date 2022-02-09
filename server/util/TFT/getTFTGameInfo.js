@@ -5,20 +5,14 @@ const axios = require('axios');
 
 module.exports = async (matchId, puuidValue) => {
   try {
-    const url = `https://americas.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=${process.env.RIOT_KEY}`;
+    const url = `https://americas.api.riotgames.com/tft/match/v1/matches/${matchId}?api_key=${process.env.RIOT_KEY}`;
     const Data = await axios.get(url);
 
     const allData = Data.data.info.participants;
 
     let userStats = [];
 
-    console.log(userStats);
-    const { kills, deaths, assists, win } = userStats[0];
-    let ka = kills + assists;
-    let kda = ka/deaths;
-    return [kills, deaths, assists, kda, win];
-
-    if(typeof(puuidValue) === 'object') {
+    if (typeof (puuidValue) === 'object') {
       Object.values(puuidValue).forEach(entry => {
         userStats.push(allData.filter(participant => participant.puuid === entry)[0]);
         const { kills, deaths, assists, win } = userStats.pop();
@@ -26,11 +20,15 @@ module.exports = async (matchId, puuidValue) => {
       });
     } else {
       userStats.push(allData.filter(participant => participant.puuid === puuidValue)[0]);
-      const { kills, deaths, assists, win } = userStats[0];
-      return [kills, deaths, assists, win];
+      const { placement, players_eliminated } = userStats[0];
+      let win = 0;
+      if (placement === 1) {
+        win = 1
+      };
+      return [placement, players_eliminated, win];
     }
   }
   catch (error) {
-    console.log(error);
+    console.log('problem with getting game info');
   }
 };
