@@ -10,6 +10,7 @@ const User = require('../models/userModel');
 // request object needs 2 properties, gameName ( meaning the game you are trying to query ) and discordName ( your unique discord identifier )
 
 module.exports = async function (requestObject) {
+  console.log('in there'); 
   let { gameName, puuid } = requestObject;
 
   if (gameName.toUpperCase() === 'LOL') {
