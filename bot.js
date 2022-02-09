@@ -37,7 +37,7 @@ client.on('ready', () => {
 const prefix = '$diss';
 
 client.on('messageCreate', async (message) => {
-  const msgAuthor = `${message.author.username}#${message.author.discriminator}`;
+  message.msgAuthor = `${message.author.username}#${message.author.discriminator}`;
   // breaks message content to parse what the user is telling the bot to do
   const messageContentArray = message.content.split(' ');
   // returns if the bot is making the command to avoid infinite loops, or if the message does not start with the correct prefix '$diss'
@@ -50,7 +50,7 @@ client.on('messageCreate', async (message) => {
   if (!command) await message.reply('Please use one of the following commands: roast, meme, game');
 
   else if (command === 'SIGNUP') {
-    client.commands.get('SIGNUP').execute(message, { _id: msgAuthor });
+    client.commands.get('SIGNUP').execute(message);
   }
 
   else if (command === 'HELP') {
@@ -65,7 +65,7 @@ client.on('messageCreate', async (message) => {
 
     console.log(userInput[0], userInput[1]);
     let updates = {
-      author: msgAuthor,
+      author: message.msgAuthor,
       game: userInput[0],
       inGameName: userInput[1],
       tagline: userInput[2],
@@ -74,11 +74,8 @@ client.on('messageCreate', async (message) => {
   }
 
   else if (command === 'ROAST') {
-    let users = {
-      user1: msgAuthor,
-      user2: userInput[0],
-    };
-    client.commands.get('ROAST').execute(message, users);
+    let user = userInput[0];
+    client.commands.get('ROAST').execute(message, user);
   }
 
   else if (command === 'GAME') {
