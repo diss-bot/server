@@ -31,7 +31,7 @@ module.exports = function (kindOfRoast, number, arrayOfPlayers) {
       "I would trade your team for 3 siege minions. Yes 3, 4 would be too generous.",
       "Are you guys actually real players? Oh, I thought we were playing against bots.",
       "I wish this team had Amumu on it. At least his tears are usefull."
-    
+
   ]
 
   let genericRoasts = [
@@ -45,7 +45,7 @@ module.exports = function (kindOfRoast, number, arrayOfPlayers) {
       "If underperforming was a job you'd be a millionare!",
       "You're the best player besides every other player I've ever met.",
       " Do you want a participation trophy?"
-    
+
   ]
 
   let compare2Players = [
@@ -60,10 +60,11 @@ module.exports = function (kindOfRoast, number, arrayOfPlayers) {
     `${winner}, you did ok i guess... Hey, ${secondPlace}, you doin' alright? ${secondPlace}, what's it like finding something else you're bad at?`,
     `${winner}, you should start tutoring ${secondPlace} because they just got schooled.`,
     `${winner} [insert nice response to winner] ${secondPlace} [insert mean roast to loser]`
-    
+
   ]
 
   let compare3Players = [
+
     
     `${winner} crushed it in game. ${secondPlace} and ${thirdPlace}, you might want to stick to tic-tac-toe.`,
     `${winner} you did subpar. ${secondPlace} , if you spent as much time in game as you do your looks, you still wouldn't get very far. As for ${thirdPlace}, you should just go...`,
@@ -75,7 +76,6 @@ module.exports = function (kindOfRoast, number, arrayOfPlayers) {
     `${winner}: ${secondPlace} and ${thirdPlace}, you guys are the laughing stock of the gaming community. You guys can't even win a game against a noob like me.`,
     `${winner} is a champion, while ${secondPlace} and ${thirdPlace} have fallen to the wayside.`
     // `${winner} [insert nice response to winner] ${secondPlace} [insert mean roast for losing to ${winner}] ${thirdPlace} [insert mean roast for losing to both of those halfwits]`
-  ]
 
   let compare4Players = [
     
@@ -92,12 +92,11 @@ module.exports = function (kindOfRoast, number, arrayOfPlayers) {
 
   ]
 
-
   let wins = [
     
       "You're the best player in the lobby! Great job!",
       "You played an excellent game and deserved the win.",
-      "Your opponent played very well, but you were better.",
+      "[insert positive feedback]",
       "Even though you only won because the other team was terrible, I still think you're a good player :).",
       "Although you may have won your game, you didn't play very well.",
       "Good job! I didn't think you had it in you to win.",
