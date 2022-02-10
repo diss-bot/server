@@ -48,4 +48,4 @@ run `npm install`
 
 - **Steve Ngo** https://github.com/alsosteve
 
-- **Dario Vitorte** xhttps://github.com/dar5o
+- **Dario Vitorte** https://github.com/dar5o

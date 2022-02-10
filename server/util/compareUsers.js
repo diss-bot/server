@@ -9,16 +9,17 @@ let data = require('../../public/embed.json');
 let roasts = require('../../public/roast.json');
 const numGen = require('./numGen.js');
 
-let roastNum = numGen();
-let compare01 = roasts.compare01[roastNum];
-let compare02 = roasts.compare02[roastNum];
-console.log('comp01', compare01);
-console.log('comp02', compare02);
-
 module.exports = async (message, game, usersToCompare) => {
   try {
-  let finalArr = [];
-  let userArray = [{
+    
+    let roastNum = numGen();
+    let compare01 = roasts.compare01[roastNum];
+    let compare02 = roasts.compare02[roastNum];
+    console.log('comp01', compare01);
+    console.log('comp02', compare02);
+
+    let finalArr = [];
+    let userArray = [{
     gameName: game,
     discordId: message.msgAuthor,
   }];
