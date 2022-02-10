@@ -15,13 +15,14 @@ module.exports = async function (requestObject) {
   if (gameName.toUpperCase() === 'LOL') {
     let matchId = await getLolMatches(puuid);
     let gameInfo = await getLolGameInfo(matchId, puuid);
+    gameInfo.decider = (gameInfo.kda + (gameInfo.win ? 1 : 0));
     return gameInfo;
   }
 
   if (gameName.toUpperCase() === 'TFT') {
-    console.log('in there');
     let matchId = await getTFTMatches(puuid);
     let gameInfo = await getTFTGameInfo(matchId, puuid);
+    gameInfo.decider = (Math.abs(gameInfo.placement - 8) + gameInfo.players_eliminated);
     return gameInfo;
   }
 

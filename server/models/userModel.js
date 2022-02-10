@@ -33,6 +33,7 @@ const userSchema = new mongoose.Schema ({
       tftMatchesPlayed: { type: Number, default: 0 },
       tftEliminations: { type: Number, default: 0 },
       tftPlacements: { type: Number, default: 0 },
+      tftAvgPlacement: { type: Number, default: 0 },
       tftWin: { type: Number, default: 0 },
     }
   }
