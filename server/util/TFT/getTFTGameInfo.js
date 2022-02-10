@@ -25,7 +25,7 @@ module.exports = async (matchId, puuidValue) => {
       if (placement === 1) {
         win = 1
       };
-      return [placement, players_eliminated, win];
+      return { placement, players_eliminated, win };
     }
   }
   catch (error) {

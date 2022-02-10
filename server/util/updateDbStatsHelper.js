@@ -3,30 +3,48 @@
 const User = require('../models/userModel.js');
 
 module.exports = async function (userStatsObject) {
-  let { gameName, data } = userStatsObject;
+  let { gameName, data, stats } = userStatsObject;
+  let { lolKDA } = stats;
 
   if (gameName.toUpperCase() === 'LOL') {
-    let { kills, deaths, assists, win, matchId } = data;
-    if (userStatsObject.latestMatches.lolLatestMatch === matchId) return; // needs to be return to prevent dupe data
+    let { kills, deaths, assists, win, matchId } = data; // this comes off the LAST match that the user played
+
+    if (userStatsObject.latestMatches.lolLatestMatch === matchId) console.log('RETURN HERE INSTEAD'); // needs to be return to prevent dupe data
+
     let winNum = win ? 1 : 0;
-    console.log('MATCHES PLAYED HERE', userStatsObject.matchesPlayed.lolMatchesPlayed)
-    let kda = kdaCalc((userStatsObject.stats.lolKDA.kills + kills), (userStatsObject.stats.lolKDA.deaths + deaths), (userStatsObject.stats.lolKDA.assists + assists));
+    console.log(lolKDA);
+    let kda = kdaCalc((lolKDA.kills + kills), (lolKDA.deaths + deaths), (lolKDA.assists + assists));
+    console.log(kda);
+
     await User.findByIdAndUpdate(userStatsObject.discordId, {
-      $inc: {
-        "games.LeagueOfLegends.kills": kills,
-        "games.LeagueOfLegends.deaths": deaths,
-        "games.LeagueOfLegends.assists": assists,
-        "games.LeagueOfLegends.win": winNum,
-        "games.LeagueOfLegends.matchesPlayed": 1,
+      $inc: { // these values will be incremented by the latest match values
+        "games.LeagueOfLegends.lolK": kills,
+        "games.LeagueOfLegends.lolD": deaths,
+        "games.LeagueOfLegends.lolA": assists,
+        "games.LeagueOfLegends.lolWin": winNum,
+        "games.LeagueOfLegends.lolMatchesPlayed": 1,
       },
       $set: {
-        "games.LeagueOfLegends.latestMatchId": matchId,
-        "games.LeagueOfLegends.KDA": kda,
+        "games.LeagueOfLegends.lolLatestMatchId": matchId,
+        "games.LeagueOfLegends.lolKDA": kda,
       },
     });
-    console.log(`${userStatsObject.discordId}'s stats have been updated`);
+    console.log(`${userStatsObject.discordId}'s stats have been updated in the database`);
   } else if (gameName.toUpperCase() === 'TFT') {
-    // let { placement, win, assists, kda, win, matchId } = data;
+    console.log(data);
+    // let { eliminations, placement, win } = data;
+
+    await User.findByIdAndUpdate(userStatsObject.discordId, {
+      $inc: {
+        "games.TeamFightTactics.tftPlacements": placement,
+        "games.TeamFightTactics.ftfWin": winNum,
+        "games.TeamFightTactics.tftEliminations": eliminations,
+        "games.TeamFightTactics.tftMatchesPlayed": 1,
+      },
+      $set: {
+        "games.TeamFightTactics.tftLatestMatchId": matchId,
+      },
+    });
 
     console.log('in here TFT');
 
