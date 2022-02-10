@@ -6,7 +6,7 @@ const getUserDbHelper = require('./getUserDbHelper.js');
 const updateDbStatsHelper = require('./updateDbStatsHelper.js');
 
 let data = require('../../public/embed.json');
-let roasts = require('../../public/roast.json');
+let roasts = require('../../public/roast.js');
 const numGen = require('./numGen.js');
 
 module.exports = async (message, game, usersToCompare) => {
@@ -70,10 +70,28 @@ module.exports = async (message, game, usersToCompare) => {
 
     let title = finalArr.reduce((string, player, idx) => {
       if (idx === 0) {
+        let roastNum = numGen();
+        let compareplayers = roasts.genericRoasts[roastNum];
         return `${player.name}`;
-      } else {
-        return `${string} vs ${player.name}`
-      }
+      };
+      if (idx === 1) {
+        let roastNum = numGen();
+        let compareplayers = roasts.compare2Players[roastNum];
+        return ???
+      };
+      if (idx === 2) {
+        let roastNum = numGen();
+        let compareplayers = roasts.compare3Players[roastNum];
+        return ???
+      };
+      if (idx === 3) {
+        let roastNum = numGen();
+        let compareplayers = roasts.compare4Players[roastNum];
+        return ???
+      };
+      // } else {
+      //   return `${string} vs ${player.name}`
+      // }
     }, '');
 
     // let resultCalculator = function (finalArrOfNames) {
