@@ -9,8 +9,6 @@ let data = require('../../public/embed.json');
 
 let roast = require('../../public/roast.js');
 
-const numGen = require('./numGen.js');
-
 module.exports = async (message, game, usersToCompare) => {
   try {
     let finalArr = [];
@@ -69,7 +67,7 @@ module.exports = async (message, game, usersToCompare) => {
       }
     }, '');
 
-    let result = roast(`compare${finalArr.length}Players`, numGen(), finalArr);
+    let result = roast(`compare${finalArr.length}Players`, finalArr);
 
     const embed = new Discord.MessageEmbed()
       .setTitle(title)

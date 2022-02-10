@@ -1,6 +1,8 @@
 'use strict';
 
-module.exports = function (kindOfRoast, number, arrayOfPlayers) {
+const numGen = require('../server/util/numGen.js');
+
+module.exports = function (kindOfRoast, arrayOfPlayers) {
 
   let winner, secondPlace, thirdPlace, fourthPlace;
   let [user1, user2, user3, user4] = arrayOfPlayers;
@@ -115,31 +117,31 @@ module.exports = function (kindOfRoast, number, arrayOfPlayers) {
   ]
 
   if (kindOfRoast === 'leagueRoasts') {
-    return leagueRoasts[number];
+    return leagueRoasts[numGen()];
   }
 
   else if (kindOfRoast === 'teamLoss') {
-    return teamLoss[number];
+    return teamLoss[numGen()];
   }
 
   else if (kindOfRoast === 'genericRoasts') {
-    return genericRoasts[number];
+    return genericRoasts[numGen()];
   }
 
   else if (kindOfRoast === 'compare2Players') {
-    return compare2Players[number];
+    return compare2Players[numGen()];
   }
 
   else if (kindOfRoast === 'compare3Players') {
-    return compare3Players[number];
+    return compare3Players[numGen()];
   }
 
   else if (kindOfRoast === 'compare4Players') {
-    return compare4Players[number];
+    return compare4Players[numGen()];
   }
 
   else if (kindOfRoast === 'wins') {
-    return wins[number];
+    return wins[numGen()];
   }
 
 }
