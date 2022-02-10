@@ -6,6 +6,7 @@ module.exports = async function (userStatsObject) {
   let { gameName, data } = userStatsObject;
 
   if (gameName.toUpperCase() === 'LOL') {
+    console.log('THIS IS THE DATA =========>', data);
     let { kills, deaths, assists, win, matchId } = data;
     if (userStatsObject.latestMatches.lolLatestMatch === matchId) return; // needs to be return to prevent dupe data
     let winNum = win ? 1 : 0;
