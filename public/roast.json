@@ -1,85 +1,84 @@
 {
   "leagueRoasts": [
-    {
-      "1": "You are so bad at League of Legends that you make the game look bad. You are the worst player I have ever seen and you should probably just give up.",
-      "2": "You are terrible at League of Legends. You can't even last hit a minion. You're so bad, you make Jinx look like a world-class player.",
-      "3": "I would roast you but you'd probably think it had something to do with pizzas.",
-      "4": "You're so bad at this game, you might as well uninstall it and go back to playing Farmville. Your K/D ratio is embarrassing, and you can't even last more than 10 minutes in a game without getting killed. You're definitely the worst player on our team, and everyone else is putting up with you because they feel sorry for you.",
-      "5": "If you ordered pizza and had to pick it up because you had it delivered to the wrong place, your team probably would have won.",
-      "6": "You have as much impact on lane as that scuttle crab over there. Also Your voice is annoying.",
-      "7": "I wish you turned into a ward every time you died. Also wards last 90 seconds, so you would probably hit the three ward limit often...",
-      "8": "Your brain has 2 parts, left and right. But your right brain has nothing left and your left brain has nothing right.",
-      "9": "If you could throw baseballs half as fast as you threw this game, you could be a pitcher in the MLB.",
-      "10": "I know you're doing your best but please stop, I want to win the game."
-    }
+    
+      "You are so bad at League of Legends that you make the game look bad. You are the worst player I have ever seen and you should probably just give up.",
+      "You are terrible at League of Legends. You can't even last hit a minion. You're so bad, you make Jinx look like a world-class player.",
+      "I would roast you but you'd probably think it had something to do with pizzas.",
+      "You're so bad at this game, you might as well uninstall it and go back to playing Farmville. Your K/D ratio is embarrassing, and you can't even last more than 10 minutes in a game without getting killed. You're definitely the worst player on our team, and everyone else is putting up with you because they feel sorry for you.",
+      "If you ordered pizza and had to pick it up because you had it delivered to the wrong place, your team probably would have won.",
+      "You have as much impact on lane as that scuttle crab over there. Also Your voice is annoying.",
+      "I wish you turned into a ward every time you died. Also wards last 90 seconds, so you would probably hit the three ward limit often...",
+      "Your brain has 2 parts, left and right. But your right brain has nothing left and your left brain has nothing right.",
+      "If you could throw baseballs half as fast as you threw this game, you could be a pitcher in the MLB.",
+      "I know you're doing your best but please stop, I want to win the game."
+    
   ],
   "teamLoss": [
-    {
-      "1": "Noah couldn't even carry these animals.",
-      "2": "Your team has less map awareness than Christopher Columbus.",
-      "3": "The enemy team probably thought the tutorial was a harder challenge.",
-      "4": "Your team fed so hard, you guys could have solved world hunger.",
-      "5": "Can your team even beat the first level of super mario?",
-      "6": "Can you guys come to my funeral so you can let me down one last time.",
-      "7": "Your team was clearly out of their league. Maybe you should have stuck to playing with bots.",
-      "8": "I would trade your team for 3 siege minions. Yes 3, 4 would be too generous.",
-      "9": "Are you guys actually real players? Oh, I thought we were playing against bots.",
-      "10": "I wish this team had Amumu on it. At least his tears are usefull."
-    }
+    
+      "Noah couldn't even carry these animals.",
+      "Your team has less map awareness than Christopher Columbus.",
+      "The enemy team probably thought the tutorial was a harder challenge.",
+      "Your team fed so hard, you guys could have solved world hunger.",
+      "Can your team even beat the first level of super mario?",
+      "Can you guys come to my funeral so you can let me down one last time.",
+      "Your team was clearly out of their league. Maybe you should have stuck to playing with bots.",
+      "I would trade your team for 3 siege minions. Yes 3, 4 would be too generous.",
+      "Are you guys actually real players? Oh, I thought we were playing against bots.",
+      "I wish this team had Amumu on it. At least his tears are usefull."
+    
   ],
   "genericRoasts": [
-    {
-      "1": "Do you even have fingers?",
-      "2": "You're a disgrace to the game.",
-      "3": "(1) Preheat the oven to 375 degrees Fahrenheit. (2) Cut the 'user' into small, even pieces. (3) Spread the 'user' onto a baking sheet and roast for 10-12 minutes, or until the 'user' is golden brown and slightly crispy. (4) Enjoy!",
-      "4": "How are you so bad at a kids game?",
-      "5": "It's not letting me press E to take over this BOT!",
-      "6": "I think you should try picking up a new hobby.",
-      "7": "If underperforming was a job you'd be a millionare!",
-      "8": "You're the best player besides every other player I've ever met.",
-      "10": "Do you want a participation trophy?"
-    }
+      "Do you even have fingers?",
+      "You're a disgrace to the game.",
+      "(1) Preheat the oven to 375 degrees Fahrenheit. (2) Cut the 'user' into small, even pieces. (3) Spread the 'user' onto a baking sheet and roast for 10-12 minutes, or until the 'user' is golden brown and slightly crispy. (4) Enjoy!",
+      "How are you so bad at a kids game?",
+      "It's not letting me press E to take over this BOT!",
+      "I think you should try picking up a new hobby.",
+      "If underperforming was a job you'd be a millionare!",
+      "You're the best player besides every other player I've ever met.",
+      " Do you want a participation trophy?"
+    
   ],
   "compare01": [
-    {
-      "1": " did better than you ",
-      "2": " crushed it in game. ",
-      "3": " , you did subpar. ",
-      "4": " , Hey look, you won against ",
-      "5": " , you only won because ",
-      "6": " , How did you manage to beat ",
-      "7": " , Nice job!",
-      "8": " , you did ok i guess... Hey, ",
-      "9": " , you should start tutoring ",
-      "10": " [insert nice response to winner]"
-    }
+    
+      " did better than you ",
+      " crushed it in game. ",
+      " , you did subpar. ",
+      " , Hey look, you won against ",
+      " , you only won because ",
+      " , How did you manage to beat ",
+      " , Nice job!",
+      " , you did ok i guess... Hey, ",
+      " , you should start tutoring ",
+      " [insert nice response to winner]"
+    
   ],
   "compare02": [
-    {
-      "1": ". What a try hard.",
-      "2": ", you might want to stick to candy crush.",
-      "3": ", if you spent as much time in game as you do your looks, You still wouldn't get very far.",
-      "4": ". that's probably not that hard of a feat though.",
-      "5": " is probably just a 3 year old kid.",
-      "6": " at the game? You're both terrible.",
-      "7": ", I think getting a second job would be a better use of your free time.",
-      "8": ", what's it like finding something else you're bad at?",
-      "9": " because they just got schooled.",
-      "10": "[insert mean roast to loser]"
-    }
+    
+      ". What a try hard.",
+      ", you might want to stick to candy crush.",
+      ", if you spent as much time in game as you do your looks, You still wouldn't get very far.",
+      ". that's probably not that hard of a feat though.",
+      " is probably just a 3 year old kid.",
+      " at the game? You're both terrible.",
+      ", I think getting a second job would be a better use of your free time.",
+      ", what's it like finding something else you're bad at?",
+      " because they just got schooled.",
+      "[insert mean roast to loser]"
+    
   ],
   "wins": [
-    {
-      "1": "You're the best player in the lobby! Great job!",
-      "2": "You played an excellent game and deserved the win.",
-      "3": "Your opponent played very well, but you were better.",
-      "4": "Even though you only won because the other team was terrible, I still think you're a good player :).",
-      "5": "Although you may have won your game, you didn't play very well.",
-      "6": "Good job! I didn't think you had it in you to win.",
-      "7": "That victory was impressive, for a newbie.",
-      "8": "You nearly lost but thankfully you outskilled a bunch of bots.",
-      "9": "How does it feel to beat a bunch of little kids?",
-      "10": "Nice job on the win. You showed those bots <3."
-    }
+    
+      "You're the best player in the lobby! Great job!",
+      "You played an excellent game and deserved the win.",
+      "Your opponent played very well, but you were better.",
+      "Even though you only won because the other team was terrible, I still think you're a good player :).",
+      "Although you may have won your game, you didn't play very well.",
+      "Good job! I didn't think you had it in you to win.",
+      "That victory was impressive, for a newbie.",
+      "You nearly lost but thankfully you outskilled a bunch of bots.",
+      "How does it feel to beat a bunch of little kids?",
+      "Nice job on the win. You showed those bots <3."
+    
   ]
 }
