@@ -6,9 +6,11 @@ module.exports = async function (userStatsObject) {
   let { gameName, data } = userStatsObject;
 
   if (gameName.toUpperCase() === 'LOL') {
-    let { kills, deaths, assists, kda, win, matchId } = data;
-    if (userStatsObject.latestMatches.lolLatestMatch === matchId) console.log('WE DID IT'); // needs to be return to prevent dupe data
+    let { kills, deaths, assists, win, matchId } = data;
+    if (userStatsObject.latestMatches.lolLatestMatch === matchId) return; // needs to be return to prevent dupe data
     let winNum = win ? 1 : 0;
+    console.log('MATCHES PLAYED HERE', userStatsObject.matchesPlayed.lolMatchesPlayed)
+    let kda = kdaCalc((userStatsObject.stats.lolKDA.kills + kills), (userStatsObject.stats.lolKDA.deaths + deaths), (userStatsObject.stats.lolKDA.assists + assists));
     await User.findByIdAndUpdate(userStatsObject.discordId, {
       $inc: {
         "games.LeagueOfLegends.kills": kills,
@@ -19,7 +21,7 @@ module.exports = async function (userStatsObject) {
       },
       $set: {
         "games.LeagueOfLegends.latestMatchId": matchId,
-        "games.LeagueOfLegends.KDA": ((userStatsObject.KDAs.lolKDA += kda) / 2),
+        "games.LeagueOfLegends.KDA": kda,
       },
     });
     console.log(`${userStatsObject.discordId}'s stats have been updated`);
@@ -48,4 +50,9 @@ module.exports = async function (userStatsObject) {
   } else {
     throw new Error('Incorrect game, try one of the ones I actually support like League, TFT, or Valorant')
   }
+}
+
+function kdaCalc(kills, deaths, assists) {
+  console.log('CHECK RIGHT HERE', kills, deaths, assists);
+  return (kills + assists) / deaths;
 }

@@ -19,17 +19,18 @@ module.exports = async (message, game, usersToCompare) => {
     if (user.discordId) {
       let userFromDb = await getUserDbHelper(user.discordId); // getting puuid from database using the discordId, which is unique
       user.puuid = userFromDb.puuid;
+      user.name = userFromDb.name;
       user.stats = {
         lolKDA: {
           kills: userFromDb.games.LeagueOfLegends.kills,
-          assists: userFromDb.games.LeagueOfLegends.asists,
-          deaths: userFromDb.games.LeagueOfLegends.deaths
+          deaths: userFromDb.games.LeagueOfLegends.deaths,
+          assists: userFromDb.games.LeagueOfLegends.assists,
         },
-          valKDA: {
+        valKDA: {
           kills: userFromDb.games.Valorant.kills,
-          assists: userFromDb.games.Valorant.asists,
-          deaths: userFromDb.games.Valorant.deaths
-          }
+          deaths: userFromDb.games.Valorant.deaths,
+          assists: userFromDb.games.Valorant.assists,
+        }
       }
       user.matchesPlayed = {
         lolMatchesPlayed: userFromDb.games.LeagueOfLegends.matchesPlayed,
@@ -42,13 +43,18 @@ module.exports = async (message, game, usersToCompare) => {
         tftLatestMatch: userFromDb.games.TeamFightTactics.latestMatchId,
       }
       user.data = await getStatsHelper(user); // retrieves stats from latest match, which will be used to diss / update db
+      finalArr.push(user);
+      console.log(finalArr)
       await updateDbStatsHelper(user);
     }
-    // finalArr.push(user);
-    // console.log(finalArr);
   }
 
+  finalArr.sort((userOne, userTwo) => (userOne.data.kda > userTwo.data.kda) ? -1 : 1);
 
+  let [winner, secondPlace, thirdPlace, fourthPlace] = finalArr;
+  console.log('WINNER HERE', winner.name);
+  console.log('second HERE', secondPlace.name);
+  return `${winner.name} is better than that scrub ${secondPlace.name}`
   // finalArr.
   // if (player1Stats.kda > player2Stats.kda) {
   //   return `${user1} whooped ${user2}'s ass!`;
