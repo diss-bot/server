@@ -80,6 +80,6 @@ module.exports = async (message, game, usersToCompare) => {
     return embed;
   } catch (e) {
     console.log(e.message);
-    return (e.message);
+    message.channel.send('words');
   }
 }

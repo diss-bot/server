@@ -1,10 +1,17 @@
 'use strict';
 
+const axios = require('axios');
+const User = require('../server/models/userModel.js');
+
 const compareUsers = require('../server/util/compareUsers.js');
 const getStatsHelper = require('../server/util/getStatsHelper.js');
 const getUserDbHelper = require('../server/util/getUserDbHelper.js');
 const setPuuidHelper = require('../server/util/setPuuidHelper.js');
 const updateDbStatsHelper = require('../server/util/updateDbStatsHelper.js');
+
+jest.mock('axios');
+
+jest.mock('../server/models/userModel.js');
 
 jest.mock('discord.js', () => {
   return {
@@ -22,7 +29,10 @@ jest.mock('discord.js', () => {
 
 describe(`Will test bot's ability to get latest User stats and update MongoDB`, () => {
 
-  it('Will compare two users latest stats and update database', async () => {
+  it(`Will compare various users' latest League of Legends stats and update database, as well as roast those who did worse than others.`, async () => {
+    User.findOne.mockResolvedValueOnce(['data']);
+    // let result = await getUserDbHelper();
+    // console.log(result);
     let message = {
       msgAuthor: 'test'
     }
@@ -38,6 +48,30 @@ describe(`Will test bot's ability to get latest User stats and update MongoDB`, 
       },
       userThree: {
         gameName: 'lol',
+        discordId: 'test3',
+      },
+    }
+
+    let value = await compareUsers(message, game, users);
+    console.log(value);
+  });
+
+  it(`Will compare various users' latest Team Fight Tactics stats and update database, as well as roast those who did worse than others.`, async () => {
+    let message = {
+      msgAuthor: 'test'
+    }
+    let game = 'tft'
+    let users = {
+      userOne: {
+        gameName: 'tft',
+        discordId: 'test1',
+      },
+      userTwo: {
+        gameName: 'tft',
+        discordId: 'test2',
+      },
+      userThree: {
+        gameName: 'tft',
         discordId: 'test3',
       },
     }
