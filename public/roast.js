@@ -4,8 +4,8 @@ const numGen = require('../server/util/numGen.js');
 
 module.exports = function (kindOfRoast, arrayOfPlayers) {
 
-  let winner, secondPlace, thirdPlace, fourthPlace;
-  let [user1, user2, user3, user4] = arrayOfPlayers;
+  let winner, secondPlace, thirdPlace, fourthPlace, user1, user2, user3, user4;
+  if (arrayOfPlayers) [user1, user2, user3, user4] = arrayOfPlayers;
   if (user1) winner = user1.name;
   if (user2) secondPlace = user2.name;
   if (user3) thirdPlace = user3.name;
