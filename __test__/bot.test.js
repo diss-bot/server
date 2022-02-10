@@ -10,80 +10,69 @@ const setPuuidHelper = require('../server/util/setPuuidHelper.js');
 const updateDbStatsHelper = require('../server/util/updateDbStatsHelper.js');
 
 jest.mock('axios');
-
 jest.mock('../server/models/userModel.js');
-
-jest.mock('discord.js', () => {
-  return {
-    MessageEmbed: jest.fn().mockImplementation(() => {
-      return {
-        setTitle: jest.fn(),
-        setColor: jest.fn(),
-        setThumbnail: jest.fn(),
-        setDescriptions: jest.fn(),
-        addFields: jest.fn()
-      }
-    })
-  }
-});
+// jest.mock('discord.js', () => {
+//   return {
+//     MessageEmbed: jest.fn().mockImplementation(() => {
+//       return {
+//         setTitle: jest.fn(),
+//         setColor: jest.fn(),
+//         setThumbnail: jest.fn(),
+//         setDescriptions: jest.fn(),
+//         addFields: jest.fn()
+//       }
+//     })
+//   }
+// });
 
 describe(`Will test bot's ability to get latest User stats and update MongoDB`, () => {
 
-  it(`Will compare various users' latest League of Legends stats and update database, as well as roast those who did worse than others.`, async () => {
-    User.findOne.mockResolvedValueOnce(['data']);
-    // let result = await getUserDbHelper();
-    // console.log(result);
-    let message = {
-      msgAuthor: 'test'
-    }
-    let game = 'lol'
-    let users = {
-      userOne: {
-        gameName: 'lol',
-        discordId: 'test1',
+  it('Calls User.find when using getUserDbHelper function, and returns a user instance', async () => {
+    User.find.mockResolvedValueOnce([{
+      games: {
+        LeagueOfLegends: {
+          lolSummonerName: 'coolguy420',
+          lolLatestMatchId: 'NA1_4212850451',
+          lolMatchesPlayed: 16,
+          lolK: 144,
+          lolD: 176,
+          lolA: 96,
+          lolKDA: 1.3636363636363635,
+          lolWin: 16
+        },
+        Valorant: {
+          gamerName: '',
+          valLatestMatchId: '',
+          valMatchesPlayed: 0,
+          tagline: '',
+          valK: 0,
+          valD: 0,
+          valA: 0,
+          valKDA: 0,
+          valWin: 0
+        },
+        TeamFightTactics: {
+          tftSummonerName: '',
+          tftLatestMatchId: '',
+          tftMatchesPlayed: 0,
+          tftEliminations: 0,
+          tftPlacements: 0,
+          tftAvgPlacement: 0,
+          tftWin: 0
+        }
       },
-      userTwo: {
-        gameName: 'lol',
-        discordId: 'test2',
-      },
-      userThree: {
-        gameName: 'lol',
-        discordId: 'test3',
-      },
-    }
+      _id: 'fakeTestId',
+      name: 'tester',
+      puuid: 'testingPUUID',
+      __v: 0
+    }]);
 
-    let value = await compareUsers(message, game, users);
-    console.log(value);
+    let user = await getUserDbHelper('test');
+    expect(user.games).toBeDefined();
+    expect(user.puuid).toBe('testingPUUID');
+    expect(user.name).toBe('tester');
+    expect(user._id).toBe('fakeTestId');
   });
-
-  it(`Will compare various users' latest Team Fight Tactics stats and update database, as well as roast those who did worse than others.`, async () => {
-    let message = {
-      msgAuthor: 'test'
-    }
-    let game = 'tft'
-    let users = {
-      userOne: {
-        gameName: 'tft',
-        discordId: 'test1',
-      },
-      userTwo: {
-        gameName: 'tft',
-        discordId: 'test2',
-      },
-      userThree: {
-        gameName: 'tft',
-        discordId: 'test3',
-      },
-    }
-
-    compareUsers(message, game, users);
-  });
-
-  // it('Should respond with 404 on a bad method', async () => {
-  //   const response = await request.patch('/');
-
-  //   expect(response.status).toEqual(404);
-  // });
 
   // it('Should respond with 200 and created object when using post method', async () => {
   //   const response1 = await request.post('/game').send({

@@ -79,7 +79,7 @@ module.exports = async (message, game, usersToCompare) => {
       );
     return embed;
   } catch (e) {
-    console.log(e.message);
-    message.channel.send('words');
+    console.log(e);
+    // message.channel.send('words');
   }
 }
