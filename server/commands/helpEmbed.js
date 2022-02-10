@@ -16,7 +16,7 @@ module.exports = {
         helpData.fields.map(obj => ({ name: `${obj.name}`, value: `${obj.value}` }))
 
       );
-    console.log(embed);
+    // console.log(embed);
     message.channel.send({ embeds: [embed] });
     // } catch (e) {
     //   message.channel.send(`You typed something in wrong.. I don't know what but I didn't like it`);
