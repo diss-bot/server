@@ -8,7 +8,7 @@ module.exports = {
   description: 'Provides clean and concise instructions for interacting with diss-bot',
   async execute(message, userInput, Discord) {
     const embed = new Discord.MessageEmbed()
-      .setTitle(`${data.title}`)
+      .setTitle(`${helpData.title}`)
       .setColor(`${data.color}`)
       .setThumbnail(`${data.thumbnail}`)
       .setDescription(`${helpData.description}`)
