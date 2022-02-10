@@ -22,10 +22,12 @@ module.exports = {
       let {kills, deaths, assists, kda, win} = data;
       // message.channel.send(`${kills} ${deaths} ${assists} ${kda} ${win}`);
       
-      if (win === true) {
-        let roast = roasts.leagueRoasts
+      if (kda < 1) {
+        let roast = roasts(`leagueRoasts`)
+      } else if (win === false) {
+        let roast = roasts(`teamLoss`)
       } else {
-        let roast = roasts.teamLoss
+        let roast = roasts(`wins`)
       };
 
       const embed = new Discord.MessageEmbed()
@@ -39,7 +41,7 @@ module.exports = {
         { name: `Assists:`, value: `${assists}` },
         { name: `KDA:`, value: `${kda}` },
         { name: `Win:`, value: `${win}` },
-        { name: `Response`, value: `${roast[numGen()]}` },
+        { name: `Response`, value: `${roast}` },
       );
     return embed;
     }
