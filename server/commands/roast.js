@@ -1,6 +1,6 @@
 'use strict';
 
-const compareUsers = require('../util/compareStats.js');
+const compareUsers = require('../util/compareUsers.js');
 module.exports = {
   name: 'ROAST',
   description: 'Retrieve user data and roast the loser',
