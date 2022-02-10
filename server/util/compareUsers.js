@@ -9,17 +9,8 @@ let data = require('../../public/embed.json');
 
 let roast = require('../../public/roast.js');
 
-const numGen = require('./numGen.js');
-
 module.exports = async (message, game, usersToCompare) => {
   try {
-
-    let roastNum = numGen();
-    // let compare01 = roasts.compare01[roastNum];
-    // let compare02 = roasts.compare02[roastNum];
-    // console.log('comp01', compare01);
-    // console.log('comp02', compare02);
-
     let finalArr = [];
     let userArray = [{
       gameName: game,
@@ -68,35 +59,15 @@ module.exports = async (message, game, usersToCompare) => {
 
     finalArr.sort((userOne, userTwo) => (userOne.data.decider > userTwo.data.decider) ? -1 : 1);
 
-    let [winner, secondPlace, thirdPlace, fourthPlace] = finalArr;
-
     let title = finalArr.reduce((string, player, idx) => {
       if (idx === 0) {
-        let roastNum = numGen();
-        let compareplayers = roasts.genericRoasts[roastNum];
         return `${player.name}`;
-      };
-      if (idx === 1) {
-        let roastNum = numGen();
-        let compareplayers = roasts.compare2Players[roastNum];
-        return ???
-      };
-      if (idx === 2) {
-        let roastNum = numGen();
-        let compareplayers = roasts.compare3Players[roastNum];
-        return ???
-      };
-      if (idx === 3) {
-        let roastNum = numGen();
-        let compareplayers = roasts.compare4Players[roastNum];
-        return ???
-      };
-      // } else {
-      //   return `${string} vs ${player.name}`
-      // }
+      } else {
+        return `${string} vs ${player.name}`
+      }
     }, '');
 
-    let result = roast('leagueRoasts', 4, finalArr);
+    let result = roast(`compare${finalArr.length}Players`, finalArr);
 
     const embed = new Discord.MessageEmbed()
       .setTitle(title)
@@ -108,7 +79,7 @@ module.exports = async (message, game, usersToCompare) => {
       );
     return embed;
   } catch (e) {
-    console.log('in HERE AGAIN');
+    console.log(e.message);
     return (e.message);
   }
 }

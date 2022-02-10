@@ -1,8 +1,15 @@
 'use strict';
 
-module.exports = function (kindOfRoast, number, arrayOfPlayers) {
+const numGen = require('../server/util/numGen.js');
 
-  let [winner, secondPlace, thirdPlace, fourthPlace] = arrayOfPlayers;
+module.exports = function (kindOfRoast, arrayOfPlayers) {
+
+  let winner, secondPlace, thirdPlace, fourthPlace;
+  let [user1, user2, user3, user4] = arrayOfPlayers;
+  if (user1) winner = user1.name;
+  if (user2) secondPlace = user2.name;
+  if (user3) thirdPlace = user3.name;
+  if (user4) fourthPlace = user4.name;
 
   let leagueRoasts = [
     
@@ -77,6 +84,8 @@ module.exports = function (kindOfRoast, number, arrayOfPlayers) {
     `${winner} is a champion, while ${secondPlace} and ${thirdPlace} have fallen to the wayside.`
     // `${winner} [insert nice response to winner] ${secondPlace} [insert mean roast for losing to ${winner}] ${thirdPlace} [insert mean roast for losing to both of those halfwits]`
 
+  ]
+
   let compare4Players = [
     
     `${winner} crushed it in game. ${secondPlace} and ${thirdPlace}, you might want to stick to tic-tac-toe. ${fourthPlace}, you should just stop`,
@@ -108,31 +117,31 @@ module.exports = function (kindOfRoast, number, arrayOfPlayers) {
   ]
 
   if (kindOfRoast === 'leagueRoasts') {
-    return leagueRoasts[number];
+    return leagueRoasts[numGen()];
   }
 
   else if (kindOfRoast === 'teamLoss') {
-    return teamLoss[number];
+    return teamLoss[numGen()];
   }
 
   else if (kindOfRoast === 'genericRoasts') {
-    return genericRoasts[number];
+    return genericRoasts[numGen()];
   }
 
   else if (kindOfRoast === 'compare2Players') {
-    return compare2Players[number];
+    return compare2Players[numGen()];
   }
 
   else if (kindOfRoast === 'compare3Players') {
-    return compare3Players[number];
+    return compare3Players[numGen()];
   }
 
   else if (kindOfRoast === 'compare4Players') {
-    return compare4Players[number];
+    return compare4Players[numGen()];
   }
 
   else if (kindOfRoast === 'wins') {
-    return wins[number];
+    return wins[numGen()];
   }
 
 }
