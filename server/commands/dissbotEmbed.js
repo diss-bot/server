@@ -14,10 +14,6 @@ module.exports = {
       .setDescription(`${helpData.description}`)
       .addFields(
         helpData.fields.map(obj => ({ name: `${obj.name}`, value: `${obj.value}` }))
-        // { name: data.fields[0].name, value: data.fields[0].value },
-        // { name: data.fields[1].name, value: data.fields[1].value },
-        // { name: data.fields[2].name, value: data.fields[2].value },
-        // { name: data.fields[3].name, value: data.fields[3].value },
 
       );
     console.log(embed);
