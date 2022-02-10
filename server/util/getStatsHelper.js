@@ -15,7 +15,8 @@ module.exports = async function (requestObject) {
   if (gameName.toUpperCase() === 'LOL') {
     let matchId = await getLolMatches(puuid);
     let gameInfo = await getLolGameInfo(matchId, puuid);
-    gameInfo.decider = (gameInfo.kda + (gameInfo.win ? 1 : 0));
+    console.log('gameinfo', gameInfo)
+    // gameInfo.decider = (gameInfo.kda + (gameInfo.win ? 1 : 0));
     return gameInfo;
   }
 

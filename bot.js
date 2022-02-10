@@ -58,8 +58,10 @@ client.on('messageCreate', async (message) => {
     client.commands.get('TEST').execute(message, userInput, Discord);
   }
 
-  else if (command === 'STATS') {
-    client.commands.get('STATS').execute(message, userInput[0]);
+  else if (command === 'ROAST') {
+    let game = userInput[0];
+    let userToRoast = userInput[1].slice(3, userInput[1].length - 1);
+    client.commands.get('ROAST').execute(message, game, userToRoast);
   }
 
   else if (command === 'REGISTER') {
@@ -71,14 +73,14 @@ client.on('messageCreate', async (message) => {
     client.commands.get('REGISTER').execute(message, registerInfo);
   }
 
-  else if (command === 'ROAST') {
+  else if (command === 'VS') {
     let game = userInput[0];
     let userOne, userTwo, userThree;
     if (userInput[1]) userOne = userInput[1].slice(3, userInput[1].length - 1);
     if (userInput[2]) userTwo = userInput[2].slice(3, userInput[1].length - 1);
     if (userInput[3]) userThree = userInput[3].slice(3, userInput[1].length - 1);
     let users = { userOne, userTwo, userThree };
-    client.commands.get('ROAST').execute(message, game, users);
+    client.commands.get('VS').execute(message, game, users);
   }
 
   else if (command === 'GAME') {
