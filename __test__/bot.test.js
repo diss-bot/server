@@ -18,7 +18,6 @@ jest.mock('discord.js', () => {
       }
     })
   }
-
 });
 
 describe(`Will test bot's ability to get latest User stats and update MongoDB`, () => {
@@ -37,10 +36,10 @@ describe(`Will test bot's ability to get latest User stats and update MongoDB`, 
         gameName: 'lol',
         discordId: 'test2',
       },
-      // userThree: {
-      //   gameName: 'lol',
-      //   discordId: 'test3',
-      // },
+      userThree: {
+        gameName: 'lol',
+        discordId: 'test3',
+      },
     }
 
     compareUsers(message, game, users);
