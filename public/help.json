@@ -11,7 +11,7 @@
     },
     {
       "name": "$diss roast {game title} {discord nickname}",
-      "value": "I'll tell you how bad you or your friends did in your last match."
+      "value": "I'll tell you how bad your friends did compared to you."
     },
     {
       "name": "$diss {game title} {in-game username}",
