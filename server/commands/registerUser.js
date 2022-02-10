@@ -16,7 +16,7 @@ module.exports = {
       if (game.toLowerCase() === 'lol') {
         await User.findByIdAndUpdate(message.msgAuthor, {
           $set: {
-            "games.LeagueOfLegends.summonerName": inGameName, "puuid": userPuuid
+            "games.LeagueOfLegends.lolSummonerName": inGameName, "puuid": userPuuid
           },
         });
         message.channel.send(`${message.author.username}'s in game name for League has been updated. Prepare to get dissed.`)
@@ -24,7 +24,7 @@ module.exports = {
 
         await User.findByIdAndUpdate(message.msgAuthor, {
           $set: {
-            "games.TeamFightTactics.summonerName": inGameName, "puuid": userPuuid
+            "games.TeamFightTactics.tftSummonerName": inGameName, "puuid": userPuuid
           },
         });
         message.channel.send(`${message.author.username}'s in game name for TFT has been updated. Prepare to get dissed.`)

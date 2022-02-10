@@ -21,7 +21,6 @@ const fs = require('fs');
 const embed = require('./server/commands/test');
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./server/commands').filter(file => file.endsWith('.js'));
-console.log(commandFiles);
 for (const file of commandFiles) {
   const command = require(`./server/commands/${file}`);
   client.commands.set(command.name, command);
@@ -31,9 +30,6 @@ console.log(client.commands);
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
-// client.on('presenceUpdate', (oldPres, newPres) => {
-//   // console.log(newPres);
-// });
 
 const prefix = '$diss';
 
