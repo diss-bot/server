@@ -1,72 +1,68 @@
 'use strict';
 
-const compareUsers = require('../server/util/compareUsers.js');
-const getStatsHelper = require('../server/util/getStatsHelper.js');
+const axios = require('axios');
+jest.mock('axios');
+
+const User = require('../server/models/userModel.js');
+jest.mock('../server/models/userModel.js');
+
 const getUserDbHelper = require('../server/util/getUserDbHelper.js');
+const getLolMatches = require('../server/util/League/getLolMatches.js');
+const getLolGameInfo = require('../server/util/League/getLolGameInfo.js');
 const setPuuidHelper = require('../server/util/setPuuidHelper.js');
 const updateDbStatsHelper = require('../server/util/updateDbStatsHelper.js');
 
-jest.mock('discord.js', () => {
-  return {
-    MessageEmbed: jest.fn().mockImplementation(() => {
-      return {
-        setTitle: jest.fn(),
-        setColor: jest.fn(),
-        setThumbnail: jest.fn(),
-        setDescriptions: jest.fn(),
-        addFields: jest.fn()
-      }
-    })
-  }
-});
+// jest.mock('discord.js', () => {
+//   return {
+//     MessageEmbed: jest.fn().mockImplementation(() => {
+//       return {
+//         setTitle: jest.fn(),
+//         setColor: jest.fn(),
+//         setThumbnail: jest.fn(),
+//         setDescriptions: jest.fn(),
+//         addFields: jest.fn()
+//       }
+//     })
+//   }
+// });
 
 describe(`Will test bot's ability to get latest User stats and update MongoDB`, () => {
 
-  it('Will compare two users latest stats and update database', async () => {
-    let message = {
-      msgAuthor: 'test'
-    }
-    let game = 'lol'
-    let users = {
-      userOne: {
-        gameName: 'lol',
-        discordId: 'test1',
+  it('Calls User.find when using getUserDbHelper function, and returns a user instance', async () => {
+    User.find.mockResolvedValueOnce([{
+      games: {
+        LeagueOfLegends: {},
+        Valorant: {},
+        TeamFightTactics: {}
       },
-      userTwo: {
-        gameName: 'lol',
-        discordId: 'test2',
-      },
-      userThree: {
-        gameName: 'lol',
-        discordId: 'test3',
-      },
-    }
+      _id: 'fakeTestId',
+      name: 'tester',
+      puuid: 'testingPUUID',
+      __v: 0
+    }]);
 
-    compareUsers(message, game, users);
+    let user = await getUserDbHelper('test');
+    expect(User.find).toHaveBeenCalledTimes(1);
+    expect(User.find).toHaveBeenCalledWith({ _id: 'test' });
+    expect(user.games).toBeDefined();
+    expect(user.puuid).toBe('testingPUUID');
+    expect(user.name).toBe('tester');
+    expect(user._id).toBe('fakeTestId');
   });
 
-  // it('Should respond with 404 on a bad method', async () => {
-  //   const response = await request.patch('/');
+  it('Calls axios.get to League Of Legends API when using getLolMatches function', async () => {
+    axios.get.mockResolvedValueOnce('testGameId-NA1_4213168996')
 
-  //   expect(response.status).toEqual(404);
-  // });
+    await getLolMatches('test');
+    expect(axios.get).toHaveBeenCalledTimes(1);
+  });
 
-  // it('Should respond with 200 and created object when using post method', async () => {
-  //   const response1 = await request.post('/game').send({
-  //     name: 'Halo',
-  //     year: '1998',
-  //   });
+  it('Calls axios.get to League Of Legends API when using getLolGameInfo function', async () => {
+    axios.get.mockResolvedValueOnce('testGameId-NA1_4213168996')
 
-  //   const response2 = await request.post('/game').send({
-  //     name: 'Mortal Kombat',
-  //     year: '1995',
-  //   });
-
-  //   expect(response1.status).toEqual(200);
-  //   expect(response1.body).toBeDefined();
-  //   expect(response2.status).toEqual(200);
-  //   expect(response2.body).toBeDefined();
-  // });
+    await getLolMatches('test');
+    expect(axios.get).toHaveBeenCalledTimes(1);
+  });
 
   // it('Should respond with 200 on a get method, and the requested data', async () => {
   //   const response = await request.get('/game');

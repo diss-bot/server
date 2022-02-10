@@ -16,6 +16,7 @@ module.exports = async function (requestObject) {
     let matchId = await getLolMatches(puuid);
     let gameInfo = await getLolGameInfo(matchId, puuid);
     gameInfo.decider = (gameInfo.kda + (gameInfo.win ? 1 : 0));
+    console.log(gameInfo);
     return gameInfo;
   }
 
