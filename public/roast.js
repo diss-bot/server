@@ -2,7 +2,12 @@
 
 module.exports = function (kindOfRoast, number, arrayOfPlayers) {
 
-  let [winner, secondPlace, thirdPlace, fourthPlace] = arrayOfPlayers;
+  let winner, secondPlace, thirdPlace, fourthPlace;
+  let [user1, user2, user3, user4] = arrayOfPlayers;
+  if (user1) winner = user1.name;
+  if (user2) secondPlace = user2.name;
+  if (user3) thirdPlace = user3.name;
+  if (user4) fourthPlace = user4.name;
 
   let leagueRoasts = [
     
@@ -76,6 +81,8 @@ module.exports = function (kindOfRoast, number, arrayOfPlayers) {
     `${winner}: ${secondPlace} and ${thirdPlace}, you guys are the laughing stock of the gaming community. You guys can't even win a game against a noob like me.`,
     `${winner} is a champion, while ${secondPlace} and ${thirdPlace} have fallen to the wayside.`
     // `${winner} [insert nice response to winner] ${secondPlace} [insert mean roast for losing to ${winner}] ${thirdPlace} [insert mean roast for losing to both of those halfwits]`
+
+  ]
 
   let compare4Players = [
     

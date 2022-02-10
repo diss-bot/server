@@ -6,12 +6,12 @@ module.exports = {
   description: 'Compare yourself, and up to 3 other diss-bot users.',
   async execute(message, game, users) {
     try {
-      let embed = await compareUsers(message, game, users);
-      if (embed instanceof Error) {
+      let value = await compareUsers(message, game, users);
+      if (value instanceof Error) {
         message.channel.send(embed.message);
         return;
       } else {
-        message.channel.send({ embeds: [embed] });
+        message.channel.send({ embeds: [value] });
       }
     } catch (e) {
       message.channel.send(e.message);

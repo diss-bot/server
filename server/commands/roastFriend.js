@@ -1,5 +1,6 @@
 'use strict';
 
+const Discord = require('discord.js');
 const getStatsHelper = require('../util/getStatsHelper.js');
 const getUserDbHelper = require('../util/getUserDbHelper.js');
 
