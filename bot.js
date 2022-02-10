@@ -18,7 +18,6 @@ db.once('open', function () {
 
 // creates Discord Collection to hold all commands for diss-bot
 const fs = require('fs');
-const embed = require('./server/commands/test');
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./server/commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {

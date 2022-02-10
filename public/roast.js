@@ -1,7 +1,10 @@
-module.exports = {
+'use strict';
 
+module.exports = function (kindOfRoast, number, arrayOfPlayers) {
 
-  leagueRoasts: [
+  let [winner, secondPlace, thirdPlace, fourthPlace] = arrayOfPlayers;
+
+  let leagueRoasts = [
     
       "You are so bad at League of Legends that you make the game look bad. You are the worst player I have ever seen and you should probably just give up.",
       "You are terrible at League of Legends. You can't even last hit a minion. You're so bad, you make Jinx look like a world-class player.",
@@ -14,8 +17,9 @@ module.exports = {
       "If you could throw baseballs half as fast as you threw this game, you could be a pitcher in the MLB.",
       "I know you're doing your best but please stop, I want to win the game."
     
-  ],
-  teamLoss: [
+  ]
+
+  let teamLoss = [
     
       "Noah couldn't even carry these animals.",
       "Your team has less map awareness than Christopher Columbus.",
@@ -27,9 +31,10 @@ module.exports = {
       "I would trade your team for 3 siege minions. Yes 3, 4 would be too generous.",
       "Are you guys actually real players? Oh, I thought we were playing against bots.",
       "I wish this team had Amumu on it. At least his tears are usefull."
-    
-  ],
-  genericRoasts: [
+
+  ]
+
+  let genericRoasts = [
 
       "Do you even have fingers?",
       "You're a disgrace to the game.",
@@ -40,9 +45,10 @@ module.exports = {
       "If underperforming was a job you'd be a millionare!",
       "You're the best player besides every other player I've ever met.",
       " Do you want a participation trophy?"
-    
-  ],
-  compare2Players: [
+
+  ]
+
+  let compare2Players = [
     
     `${winner} did better than ${secondPlace}. What a try hard.`,
     `${winner} crushed it in game. ${secondPlace}, you might want to stick to candy crush.`,
@@ -54,9 +60,11 @@ module.exports = {
     `${winner}, you did ok i guess... Hey, ${secondPlace}, you doin' alright? ${secondPlace}, what's it like finding something else you're bad at?`,
     `${winner}, you should start tutoring ${secondPlace} because they just got schooled.`,
     `${winner} [insert nice response to winner] ${secondPlace} [insert mean roast to loser]`
-    
-  ],
-  compare3Players:  [
+
+  ]
+
+  let compare3Players = [
+
     
     `${winner} crushed it in game. ${secondPlace} and ${thirdPlace}, you might want to stick to tic-tac-toe.`,
     `${winner} you did subpar. ${secondPlace} , if you spent as much time in game as you do your looks, you still wouldn't get very far. As for ${thirdPlace}, you should just go...`,
@@ -67,9 +75,9 @@ module.exports = {
     `${secondPlace} and ${thirdPlace}, you guys are the biggest losers I know. You can't even win a game. ${winner}, on the other hand, is a total winner.`,
     `${winner}: ${secondPlace} and ${thirdPlace}, you guys are the laughing stock of the gaming community. You guys can't even win a game against a noob like me.`,
     `${winner} is a champion, while ${secondPlace} and ${thirdPlace} have fallen to the wayside.`
-    `${winner} [insert nice response to winner] ${secondPlace} [insert mean roast for losing to ${winner}] ${thirdPlace} [insert mean roast for losing to both of those halfwits]`
-  ],
-  compare4Players: [
+    // `${winner} [insert nice response to winner] ${secondPlace} [insert mean roast for losing to ${winner}] ${thirdPlace} [insert mean roast for losing to both of those halfwits]`
+
+  let compare4Players = [
     
     `${winner} crushed it in game. ${secondPlace} and ${thirdPlace}, you might want to stick to tic-tac-toe. ${fourthPlace}, you should just stop`,
     `${winner} you did subpar. ${secondPlace} , if you spent as much time in game as you do your looks, you still wouldn't get very far. As for ${thirdPlace} and ${fourthPlace}, you should just go...`,
@@ -80,12 +88,11 @@ module.exports = {
     `${secondPlace}, ${thirdPlace}, and ${fourthPlace}, you guys are the biggest losers I know. You can't even win a game. ${winner}, on the other hand, is a total winner.`,
     `${winner}: ${secondPlace}, ${thirdPlace}, and ${fourthPlace}, you guys are the laughing stock of the gaming community. You guys can't even win a game against a noob like me.`,
     `${winner} [insert nice response to winner] ${secondPlace} [insert mean roast for losing to ${winner}] ${thirdPlace} [insert mean roast for losing to both of those halfwits] ${fourthPlace} [.... this is getting embarrassing]`
-    `(1) Preheat the oven to 375 degrees Fahrenheit. (2) Cut ${secondPlace} into small, even pieces. (3) Spread ${thirdPlace} onto a baking sheet and roast for 10-12 minutes, or until ${fourthPlace} is golden brown and slightly crispy. (4) Enjoy ${winner}!`,
+    // `(1) Preheat the oven to 375 degrees Fahrenheit. (2) Cut ${secondPlace} into small, even pieces. (3) Spread ${thirdPlace} onto a baking sheet and roast for 10-12 minutes, or until ${fourthPlace} is golden brown and slightly crispy. (4) Enjoy ${winner}!`,
 
-],
+  ]
 
-
-  wins: [
+  let wins = [
     
       "You're the best player in the lobby! Great job!",
       "You played an excellent game and deserved the win.",
@@ -99,4 +106,33 @@ module.exports = {
       "Nice job on the win. You showed those bots <3."
     
   ]
+
+  if (kindOfRoast === 'leagueRoasts') {
+    return leagueRoasts[number];
+  }
+
+  else if (kindOfRoast === 'teamLoss') {
+    return teamLoss[number];
+  }
+
+  else if (kindOfRoast === 'genericRoasts') {
+    return genericRoasts[number];
+  }
+
+  else if (kindOfRoast === 'compare2Players') {
+    return compare2Players[number];
+  }
+
+  else if (kindOfRoast === 'compare3Players') {
+    return compare3Players[number];
+  }
+
+  else if (kindOfRoast === 'compare4Players') {
+    return compare4Players[number];
+  }
+
+  else if (kindOfRoast === 'wins') {
+    return wins[number];
+  }
+
 }
