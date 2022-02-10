@@ -1,20 +1,21 @@
 'use strict'
 
-let data = require('../../public/help.json');
+let data = require('../../public/embed.json');
 
 module.exports = {
-  name: 'HELP',
-  description: 'Provides clean and concise instructions for interacting with diss-bot',
+  name: 'TEST',
+  description: 'testing',
   async execute(message, userInput, Discord) {
     const embed = new Discord.MessageEmbed()
-      .setTitle(data.title)
-      .setColor(data.color)
-      .setThumbnail(data.color)
-      .setDescription('')
+    .setTitle(`${data.title}`)
+    .setColor(`${data.color}`)
+    .setThumbnail(`${data.thumbnail}`)
+      .setDescription('a description')
       .addFields(
-        data.fields.map(obj => ({ name: obj.name, value: obj.value }))
-      );
-    console.log(embed);
+        helpData.fields.map(obj => ({ name: `${Object.keys(obj)}`, value: `${Object.values(obj)}` }))
+
+        );
+      console.log(embed);
     message.channel.send({ embeds: [embed] });
     // } catch (e) {
     //   message.channel.send(`You typed something in wrong.. I don't know what but I didn't like it`);

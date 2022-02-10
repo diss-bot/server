@@ -18,6 +18,7 @@ db.once('open', function () {
 
 // creates Discord Collection to hold all commands for diss-bot
 const fs = require('fs');
+const embed = require('./server/commands/test');
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./server/commands').filter(file => file.endsWith('.js'));
 console.log(commandFiles);
@@ -55,6 +56,10 @@ client.on('messageCreate', async (message) => {
 
   else if (command === 'HELP') {
     client.commands.get('HELP').execute(message, userInput, Discord);
+  }
+
+  else if (command === 'TEST') {
+    client.commands.get('TEST').execute(message, userInput, Discord);
   }
 
   else if (command === 'STATS') {

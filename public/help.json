@@ -3,15 +3,19 @@
   "fields": [
     {
       "name": "$diss signup",
-      "value": "Use this so I can start tracking your stats and making fun of you."
+      "value": "This is step 1 if you haven't done this yet dumb dumb."
     },
     {
       "name": "$diss register {game title} {in-game username}",
-      "value": "lol"
+      "value": "You should probably let me know what game you play and your user name."
     },
     {
-      "name": "diss game",
+      "name": "$diss roast {game title} {discord nickname}",
       "value": "I'll tell you how bad you or your friends did in your last match."
+    },
+    {
+      "name": "$diss {game title} {in-game username}",
+      "value": "I'll give my nicest opinion of this persons last match."
     },
     {
       "name": "$diss help",
