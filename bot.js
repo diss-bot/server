@@ -20,7 +20,6 @@ db.once('open', function () {
 const fs = require('fs');
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./server/commands').filter(file => file.endsWith('.js'));
-console.log(commandFiles);
 for (const file of commandFiles) {
   const command = require(`./server/commands/${file}`);
   client.commands.set(command.name, command);
@@ -30,14 +29,11 @@ console.log(client.commands);
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
-// client.on('presenceUpdate', (oldPres, newPres) => {
-//   // console.log(newPres);
-// });
 
 const prefix = '$diss';
 
 client.on('messageCreate', async (message) => {
-  message.msgAuthor = `${message.author.username}#${message.author.discriminator}`;
+  message.msgAuthor = message.author.id;
   // breaks message content to parse what the user is telling the bot to do
   const messageContentArray = message.content.split(' ');
   // returns if the bot is making the command to avoid infinite loops, or if the message does not start with the correct prefix '$diss'
@@ -57,25 +53,33 @@ client.on('messageCreate', async (message) => {
     client.commands.get('HELP').execute(message, userInput, Discord);
   }
 
-  else if (command === 'STATS') {
-    client.commands.get('STATS').execute(message, userInput[0]);
-  }
-
-  else if (command === 'REGISTER') {
-
-    console.log(userInput[0], userInput[1]);
-    let updates = {
-      author: message.msgAuthor,
-      game: userInput[0],
-      inGameName: userInput[1],
-      tagline: userInput[2],
-    };
-    client.commands.get('REGISTER').execute(message, updates);
+  else if (command === 'TEST') {
+    client.commands.get('TEST').execute(message, userInput, Discord);
   }
 
   else if (command === 'ROAST') {
-    let user = userInput[0];
-    client.commands.get('ROAST').execute(message, user);
+    let game = userInput[0];
+    let userToRoast = userInput[1].slice(3, userInput[1].length - 1);
+    client.commands.get('ROAST').execute(message, game, userToRoast);
+  }
+
+  else if (command === 'REGISTER') {
+    let registerInfo = {
+      game: userInput[0],
+      inGameName: userInput[1],
+      tagline: userInput[2], // used to register for puuid using Valorant API
+    };
+    client.commands.get('REGISTER').execute(message, registerInfo);
+  }
+
+  else if (command === 'VS') {
+    let game = userInput[0];
+    let userOne, userTwo, userThree;
+    if (userInput[1]) userOne = userInput[1].slice(3, userInput[1].length - 1);
+    if (userInput[2]) userTwo = userInput[2].slice(3, userInput[1].length - 1);
+    if (userInput[3]) userThree = userInput[3].slice(3, userInput[1].length - 1);
+    let users = { userOne, userTwo, userThree };
+    client.commands.get('VS').execute(message, game, users);
   }
 
   else if (command === 'GAME') {

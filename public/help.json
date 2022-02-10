@@ -1,0 +1,34 @@
+{
+  "title":"Wow, you need help? Really?" ,
+ "description": "I guess these are the commands you can use to talk to me...",
+  "fields": [
+    {
+      "name": "$diss signup",
+      "value": "This is step 1, if you haven't done this yet you're kidding yourself."
+    },
+    {
+      "name": "$diss register < lol / tft > < summonername >",
+      "value": "You should probably let me know what game you play and your user name."
+    },
+    {
+      "name": " OR: $diss register < val > < valorant username > < tagline >",
+      "value": "Yo, you play Valorant? You probably bottom frag huh?"
+    },
+    {
+      "name": "$diss vs < game title > < @discord nickname >",
+      "value": "I'll compared you to up to 3 friends, but it's not like you have that many anyway."
+    },
+    {
+      "name": "$diss roast < lol / tft / val > < @discord nickname >",
+      "value": "I'll try my best to give a nice opinion of this person's last match."
+    },
+    {
+      "name": "$diss < game title > < in-game username >",
+      "value": "Let's see how this person played last game."
+    },
+    {
+      "name": "$diss help",
+      "value": "If I really need to explain what this does, you need more help than I can give..."
+    }
+  ]
+}
