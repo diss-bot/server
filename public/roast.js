@@ -1,6 +1,7 @@
 module.exports = {
 
-  leagueRoasts = [
+
+  leagueRoasts: [
     
       "You are so bad at League of Legends that you make the game look bad. You are the worst player I have ever seen and you should probably just give up.",
       "You are terrible at League of Legends. You can't even last hit a minion. You're so bad, you make Jinx look like a world-class player.",
@@ -14,7 +15,7 @@ module.exports = {
       "I know you're doing your best but please stop, I want to win the game."
     
   ],
-  teamLoss = [
+  teamLoss: [
     
       "Noah couldn't even carry these animals.",
       "Your team has less map awareness than Christopher Columbus.",
@@ -28,7 +29,7 @@ module.exports = {
       "I wish this team had Amumu on it. At least his tears are usefull."
     
   ],
-  genericRoasts = [
+  genericRoasts: [
 
       "Do you even have fingers?",
       "You're a disgrace to the game.",
@@ -41,7 +42,7 @@ module.exports = {
       " Do you want a participation trophy?"
     
   ],
-  compare2Players = [
+  compare2Players: [
     
     `${winner} did better than ${secondPlace}. What a try hard.`,
     `${winner} crushed it in game. ${secondPlace}, you might want to stick to candy crush.`,
@@ -55,7 +56,7 @@ module.exports = {
     `${winner} [insert nice response to winner] ${secondPlace} [insert mean roast to loser]`
     
   ],
-  compare3Players =  [
+  compare3Players:  [
     
     `${winner} crushed it in game. ${secondPlace} and ${thirdPlace}, you might want to stick to tic-tac-toe.`,
     `${winner} you did subpar. ${secondPlace} , if you spent as much time in game as you do your looks, you still wouldn't get very far. As for ${thirdPlace}, you should just go...`,
@@ -68,7 +69,7 @@ module.exports = {
     `${winner} is a champion, while ${secondPlace} and ${thirdPlace} have fallen to the wayside.`
     `${winner} [insert nice response to winner] ${secondPlace} [insert mean roast for losing to ${winner}] ${thirdPlace} [insert mean roast for losing to both of those halfwits]`
   ],
-  compare4Players = [
+  compare4Players: [
     
     `${winner} crushed it in game. ${secondPlace} and ${thirdPlace}, you might want to stick to tic-tac-toe. ${fourthPlace}, you should just stop`,
     `${winner} you did subpar. ${secondPlace} , if you spent as much time in game as you do your looks, you still wouldn't get very far. As for ${thirdPlace} and ${fourthPlace}, you should just go...`,
@@ -84,11 +85,11 @@ module.exports = {
 ],
 
 
-  wins = [
+  wins: [
     
       "You're the best player in the lobby! Great job!",
       "You played an excellent game and deserved the win.",
-      "Your opponent played very well, but you were better.",
+      "[insert positive feedback]",
       "Even though you only won because the other team was terrible, I still think you're a good player :).",
       "Although you may have won your game, you didn't play very well.",
       "Good job! I didn't think you had it in you to win.",
