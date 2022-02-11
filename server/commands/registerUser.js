@@ -12,7 +12,7 @@ module.exports = {
 
       let userPuuid = await getPuuid(registerInfo);
       let { game, inGameName, tagline } = registerInfo;
-      if (!userPuuid) throw new Error('Error getting PUUID');
+      if (!userPuuid) throw new Error('Error getting finding puuid');
 
       if (game.toLowerCase() === 'lol') {
         await User.findByIdAndUpdate(message.msgAuthor, {
@@ -41,7 +41,7 @@ module.exports = {
         throw new Error('Incorrect game, try one of the ones I actually support like League, TFT, or Valorant')
       }
     } catch (e) {
-      message.channel.send(embedMaker(e.message));
+      message.channel.send({ embeds: [embedMaker(e.message)] });
     }
   }
 }

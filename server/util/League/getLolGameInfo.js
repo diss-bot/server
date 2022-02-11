@@ -15,6 +15,6 @@ module.exports = async (matchId, puuidValue) => {
     return { kills, deaths, assists, kda, win, matchId };
   }
   catch (error) {
-    console.log('problem with getting game info');
+    return 'No LOL game info';
   }
 };

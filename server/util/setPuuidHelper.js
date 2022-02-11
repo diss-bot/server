@@ -7,7 +7,6 @@ module.exports = async (registerInfo) => {  // will add game to make this functi
   let { inGameName, tagline } = registerInfo;
   try {
     try {
-      // console.log('in first try');
       const url = `https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${inGameName}?api_key=${process.env.RIOT_KEY}`;
       let returnData = await axios.get(url);
       let puuid = returnData.data.puuid;
@@ -15,7 +14,6 @@ module.exports = async (registerInfo) => {  // will add game to make this functi
     }
     catch {
       try {
-        // console.log('in second try');
         const url = `https://na1.api.riotgames.com/tft/summoner/v1/summoners/by-name/${inGameName}?api_key=${process.env.RIOT_KEY}`;
         let returnData = await axios.get(url);
         let puuid = returnData.data.puuid;
