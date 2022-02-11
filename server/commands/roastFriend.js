@@ -23,7 +23,7 @@ module.exports = {
         puuid: user.puuid,
       }
       let data = await getStatsHelper(requestObj)
-      if (!data.kills) {
+      if (!data) {
         message.channel.send({ embeds: [embedMaker(`I couldn't find stats on this scrub, that's your bad.`)] })
         return;
       }
