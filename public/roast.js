@@ -72,11 +72,10 @@ module.exports = function (kindOfRoast, arrayOfPlayers) {
 
   let compare3Players = [
 
-    
     `${winner} crushed it in game. ${secondPlace} and ${thirdPlace}, you might want to stick to tic-tac-toe.`,
-    `${winner} you did subpar. ${secondPlace} , if you spent as much time in game as you do your looks, you still wouldn't get very far. As for ${thirdPlace}, you should just go...`,
+    `${winner} you did subpar. ${secondPlace}, if you spent as much time in game as you do on your looks, you still wouldn't get very far. As for ${thirdPlace}, you should just go...`,
     `Hey look, ${winner} won against ${secondPlace} and ${thirdPlace}. That's probably not that hard of a feat though.`,
-    `${winner}, How did you manage to beat ${secondPlace} and ${thirdPlace} at this game? You're the worst of you three idiots.`,
+    `${winner}, how did you manage to beat ${secondPlace} and ${thirdPlace} at this game? You're the worst of you three idiots.`,
     `${winner}, you did ok i guess... Hey, ${secondPlace}, you doin' alright? ${thirdPlace}, what's it like finding something else you're bad at?`,
     `Bro, ${winner} did ${secondPlace} and ${thirdPlace} so dirty they need to hose off on the side of the house!`, 
     `${secondPlace} and ${thirdPlace}, you guys are the biggest losers I know. You can't even win a game. ${winner}, on the other hand, is a total winner.`,
