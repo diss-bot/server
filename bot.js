@@ -7,6 +7,7 @@ const dissBotIntents = new Discord.Intents();
 dissBotIntents.add('GUILDS', 'GUILD_MESSAGES', 'GUILD_PRESENCES');
 const client = new Discord.Client({ intents: dissBotIntents });
 
+let PORT = process.env.PORT;
 // use this to create and use an embed
 const embedMaker = require('./public/embedMaker.js');
 
