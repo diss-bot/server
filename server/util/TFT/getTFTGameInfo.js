@@ -18,6 +18,6 @@ module.exports = async (matchId, puuidValue) => {
     return { placement, players_eliminated, win, matchId };
   }
   catch (error) {
-    console.log('problem with getting tft game info');
+    return 'No TFT game info';
   }
 };

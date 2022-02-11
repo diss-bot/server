@@ -9,6 +9,7 @@ const embedMaker = require('../../public/embedMaker.js');
 
 let data = require('../../public/embed.json');
 let roast = require('../../public/roast.js');
+let allowedGamesArray = ['lol', 'tft'];
 
 module.exports = async (message, game, usersToCompare) => {
   try {
@@ -25,8 +26,7 @@ module.exports = async (message, game, usersToCompare) => {
     })
 
     for (let user of userArray) {
-      console.log(user.gameName);
-      if (user.gameName !== 'lol') return embedMaker('What the heck is that? Try one of the games I actually support like League, TFT, or Valorant');
+      if (!allowedGamesArray.includes(user.gameName)) return embedMaker('What the heck is that? Try one of the games I actually support like League of Legends or TeamFightTactics');
       if (user.discordId) {
         let userFromDb = await getUserDbHelper(user.discordId); // getting puuid from database using the discordId, which is unique
         if (!userFromDb) return embedMaker(`You don't exist in my database, try the "$diss help" command to figure yourself out.`);
@@ -57,6 +57,7 @@ module.exports = async (message, game, usersToCompare) => {
         }
 
         user.data = await getStatsHelper(user); // retrieves stats from latest match, which will be used to diss / update database
+        if (!user.data) return embedMaker(`Somebody is lying about how much they game, I couldn't find any info on ${user.name}`);
         finalArr.push(user);
         await updateDbStatsHelper(user);
       }
@@ -85,6 +86,5 @@ module.exports = async (message, game, usersToCompare) => {
     return embed;
   } catch (e) {
     console.log(e);
-    // message.channel.send('words');
   }
 }
