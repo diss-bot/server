@@ -7,12 +7,7 @@ module.exports = {
   async execute(message, game, users) {
     try {
       let diss = await compareUsers(message, game, users);
-      if (diss instanceof Error) {
-        message.channel.send(diss.message);
-        return;
-      } else {
-        message.channel.send({ embeds: [diss] });
-      }
+      message.channel.send({ embeds: [diss] });
     } catch (e) {
       message.channel.send(e.message);
     }

@@ -1,6 +1,7 @@
 'use strict';
 
 const User = require('../models/userModel');
+const embedMaker = require('../../public/embedMaker.js');
 const getPuuid = require('../util/setPuuidHelper.js');
 
 module.exports = {
@@ -39,17 +40,8 @@ module.exports = {
       } else {
         throw new Error('Incorrect game, try one of the ones I actually support like League, TFT, or Valorant')
       }
-      // else if (game.toLowerCase() === 'apex') {
-
-      //   await User.findByIdAndUpdate(message.msgAuthor, {
-      //     $set: {
-      //       "games.APEX.summonerName": inGameName, "puuid": userPuuid
-      //     },
-      //   });
-      //   // console.log(updatedUser);
-      // }
     } catch (e) {
-      message.channel.send(`You did something wrong... it might be - ${e.message}`);
+      message.channel.send(embedMaker(e.message));
     }
   }
 }
