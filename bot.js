@@ -37,6 +37,9 @@ const prefix = '$diss ';
 
 client.on('messageCreate', async (message) => {
   message.msgAuthor = message.author.id;
+  if (message.content === prefix.trim()) {
+    message.channel.send({ embeds: [embedMaker(`That's my name, don't wear it out...`)] })
+  }
   // breaks message content to parse what the user is telling the bot to do
   const messageContentArray = message.content.split(' ');
   // returns if the bot is making the command to avoid infinite loops, or if the message does not start with the correct prefix '$diss'
