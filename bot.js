@@ -72,6 +72,11 @@ client.on('messageCreate', async (message) => {
 
   else if (command === 'ROAST') {
     let game = userInput[0];
+    if (!game || !userInput[1]) {
+      let embed = embedMaker(`What game and name, weirdo... try entering "$diss roast lol < @discord nickname >"`)
+      message.channel.send({ embeds: [embed] });
+      return;
+    }
     let userToRoast = userInput[1].slice(3, userInput[1].length - 1);
     client.commands.get('ROAST').execute(message, game, userToRoast);
   }
