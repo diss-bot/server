@@ -52,8 +52,7 @@ module.exports = {
           { name: `Roast:`, value: `${roastLeague(kda, win)}` },
         );
       message.channel.send({ embeds: [embed] });
-    }
-    if (game.toUpperCase() === 'TFT') {
+    } else if (game.toUpperCase() === 'TFT') {
       let user = await getUserDbHelper(userToRoast);
       if (!user) {
         message.channel.send({ embeds: [embedMaker(`I couldn't find stats on this scrub, that's your bad.`)] })
