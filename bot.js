@@ -7,6 +7,9 @@ const dissBotIntents = new Discord.Intents();
 dissBotIntents.add('GUILDS', 'GUILD_MESSAGES', 'GUILD_PRESENCES');
 const client = new Discord.Client({ intents: dissBotIntents });
 
+// use this to create and use an embed
+const embedMaker = require('./public/embedMaker.js');
+
 // connects to MongoDB containing all the Users' data
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URL);
@@ -30,37 +33,63 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-const prefix = '$diss';
+const prefix = '$diss ';
 
 client.on('messageCreate', async (message) => {
   message.msgAuthor = message.author.id;
+  if (message.content === prefix.trim()) {
+    message.channel.send({ embeds: [embedMaker(`That's my name, don't wear it out...`)] })
+  }
   // breaks message content to parse what the user is telling the bot to do
   const messageContentArray = message.content.split(' ');
   // returns if the bot is making the command to avoid infinite loops, or if the message does not start with the correct prefix '$diss'
   if (!message.content.startsWith(prefix) || message.author.bot) return; 
   // the word directly after the prefix '$diss' becomes the command
+  if (messageContentArray.length < 2) {
+    let embed = embedMaker(`You're too lazy to type in a command? Come on, help me out here...`);
+    message.channel.send({ embeds: [embed] });
+    return;
+  }
   const command = messageContentArray.splice(0, 2)[1].toUpperCase();
   // and the words following that are used as user input
   const userInput = messageContentArray;
 
-  if (!command) await message.reply('Please use one of the following commands: roast, meme, game');
+  if (command === 'HELP') {
+    client.commands.get('HELP').execute(message, userInput, Discord);
+  }
+
+  else if (command === 'VS') {
+    let game = userInput[0];
+    let userOne, userTwo, userThree;
+    if (userInput[4]) {
+      let embed = embedMaker(`Woah now, I know you don't have THAT many friends, try running it with just 3 and see if that works.`)
+      message.channel.send({ embeds: [embed] });
+      return;
+    }
+    if (userInput[1]) userOne = userInput[1].slice(3, userInput[1].length - 1);
+    if (userInput[2]) userTwo = userInput[2].slice(3, userInput[1].length - 1);
+    if (userInput[3]) userThree = userInput[3].slice(3, userInput[1].length - 1);
+    let users = { userOne, userTwo, userThree };
+    client.commands.get('VS').execute(message, game, users);
+  }
+
+  else if (command === 'ROAST') {
+    let game = userInput[0];
+    if (!game || !userInput[1]) {
+      let embed = embedMaker(`What game and name, weirdo... try entering "$diss roast lol < @discord nickname >"`)
+      message.channel.send({ embeds: [embed] });
+      return;
+    }
+    let userToRoast = userInput[1].slice(3, userInput[1].length - 1);
+    client.commands.get('ROAST').execute(message, game, userToRoast);
+  }
 
   else if (command === 'SIGNUP') {
     client.commands.get('SIGNUP').execute(message);
   }
 
-  else if (command === 'HELP') {
-    client.commands.get('HELP').execute(message, userInput, Discord);
-  }
-
   else if (command === 'TEST') {
     client.commands.get('TEST').execute(message, userInput, Discord);
-  }
-
-  else if (command === 'ROAST') {
-    let game = userInput[0];
-    let userToRoast = userInput[1].slice(3, userInput[1].length - 1);
-    client.commands.get('ROAST').execute(message, game, userToRoast);
   }
 
   else if (command === 'REGISTER') {
@@ -72,18 +101,9 @@ client.on('messageCreate', async (message) => {
     client.commands.get('REGISTER').execute(message, registerInfo);
   }
 
-  else if (command === 'VS') {
-    let game = userInput[0];
-    let userOne, userTwo, userThree;
-    if (userInput[1]) userOne = userInput[1].slice(3, userInput[1].length - 1);
-    if (userInput[2]) userTwo = userInput[2].slice(3, userInput[1].length - 1);
-    if (userInput[3]) userThree = userInput[3].slice(3, userInput[1].length - 1);
-    let users = { userOne, userTwo, userThree };
-    client.commands.get('VS').execute(message, game, users);
-  }
-
-  else if (command === 'GAME') {
-    client.commands.get('GAME').execute(message, userInput[0]);
+  else {
+    let embed = embedMaker(`You didn't even try to use a correct command did you?`);
+    message.channel.send({ embeds: [embed] })
   }
 });
 

@@ -10,7 +10,7 @@ module.exports = async function (userStatsObject) {
 
     let { kills, deaths, assists, win, matchId } = data; // this comes off the LAST match that the user played
 
-    if (userStatsObject.latestMatches.lolLatestMatch === matchId) console.log('RETURN HERE INSTEAD'); // needs to be return to prevent dupe data
+    if (userStatsObject.latestMatches.lolLatestMatch === matchId) return; // needs to be return to prevent dupe data
 
     let winNum = win ? 1 : 0;
     let kda = kdaCalc((lolKDA.kills + kills), (lolKDA.deaths + deaths), (lolKDA.assists + assists));
@@ -34,8 +34,9 @@ module.exports = async function (userStatsObject) {
 
     let { players_eliminated, placement, win, matchId } = data;
 
-    if (userStatsObject.latestMatches.tftLatestMatch === matchId) console.log('TFT RETURN HERE INSTEAD'); // needs to be return to prevent dupe data
+    if (userStatsObject.latestMatches.tftLatestMatch === matchId) return; // needs to be return to prevent dupe data
 
+    console.log('RIGHT HERE M8', userStatsObject);
     let avgPlacement = avgPlacementCalc((tftSTATS.placements + placement), (userStatsObject.matchesPlayed.tftMatchesPlayed + 1));
 
     await User.findByIdAndUpdate(userStatsObject.discordId, {
@@ -54,7 +55,7 @@ module.exports = async function (userStatsObject) {
 
     // } else if (gameName.toUpperCase() === 'VAL') { // this code block would have been used if we received a developer key from Riot Games in time
   } else {
-    throw new Error('Problem updating stats, try one of the ones I actually support like League, TFT, or Valorant')
+    return;
   }
 }
 

@@ -5,8 +5,6 @@ const getLolGameInfo = require('./League/getLolGameInfo.js');
 const getTFTMatches = require('./TFT/getTFTMatches.js'); // this is also an async function, use async/await when calling
 const getTFTGameInfo = require('./TFT/getTFTGameInfo.js');
 
-const User = require('../models/userModel');
-
 // request object needs 2 properties, gameName ( meaning the game you are trying to query ) and discordName ( your unique discord identifier )
 
 module.exports = async function (requestObject) {
@@ -15,6 +13,7 @@ module.exports = async function (requestObject) {
   if (gameName.toUpperCase() === 'LOL') {
     let matchId = await getLolMatches(puuid);
     let gameInfo = await getLolGameInfo(matchId, puuid);
+    if (gameInfo === 'No LOL game info') return;
     gameInfo.decider = (gameInfo.kda + (gameInfo.win ? 1 : 0));
     return gameInfo;
   }
@@ -22,6 +21,7 @@ module.exports = async function (requestObject) {
   if (gameName.toUpperCase() === 'TFT') {
     let matchId = await getTFTMatches(puuid);
     let gameInfo = await getTFTGameInfo(matchId, puuid);
+    if (gameInfo === 'No TFT game info') return;
     gameInfo.decider = (Math.abs(gameInfo.placement - 8) + gameInfo.players_eliminated);
     return gameInfo;
   }
