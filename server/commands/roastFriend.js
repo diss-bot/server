@@ -22,14 +22,24 @@ module.exports = {
       let {kills, deaths, assists, kda, win} = data;
       // message.channel.send(`${kills} ${deaths} ${assists} ${kda} ${win}`);
       
-      if (win === true) {
-        let roast = roasts.leagueRoasts
-      } else {
-        let roast = roasts.teamLoss
-      };
+     let roast = (kda, win) => {
+        if (kda < 1) {
+          console.log(roasts(`leagueRoasts`));
+          return roasts(`leagueRoasts`);
+          
+        } else if (win === false) {
+          console.log(roasts(`teamLoss`));
+          return roasts(`teamLoss`);
+        } else {
+          console.log(roasts(`wins`));
+          return roasts(`wins`);
+        };
+        
+      }
+      console.log(roast);
 
       const embed = new Discord.MessageEmbed()
-      .setTitle(title)
+      .setTitle("roast")
       .setColor(`${embedData.color}`)
       .setThumbnail(`${embedData.thumbnail}`)
       .setDescription(`Let's see who played better.`)
@@ -39,9 +49,9 @@ module.exports = {
         { name: `Assists:`, value: `${assists}` },
         { name: `KDA:`, value: `${kda}` },
         { name: `Win:`, value: `${win}` },
-        { name: `Response`, value: `${roast[numGen()]}` },
+        { name: `Response`, value: `${roast(kda, win)}` },
       );
-    return embed;
+    message.channel.send({embeds: [embed]});
     }
     else if (game.toUpperCase() === 'TFT') {
       console.log(data);
