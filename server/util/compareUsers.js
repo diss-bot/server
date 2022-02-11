@@ -5,10 +5,10 @@ const getStatsHelper = require('./getStatsHelper.js');
 const getUserDbHelper = require('./getUserDbHelper.js');
 const updateDbStatsHelper = require('./updateDbStatsHelper.js');
 
-const embedMaker = require('../../public/embedMaker.js');
+const embedMaker = require('../../data/embedMaker.js');
 
-let data = require('../../public/embed.json');
-let roast = require('../../public/roast.js');
+let data = require('../../data/embed.json');
+let roast = require('../../data/roast.js');
 let allowedGamesArray = ['lol', 'tft'];
 
 module.exports = async (message, game, usersToCompare) => {
@@ -76,7 +76,7 @@ module.exports = async (message, game, usersToCompare) => {
     let result = roast(`compare${finalArr.length}Players`, finalArr);
 
     const embed = new Discord.MessageEmbed()
-      .setTitle(title)
+      .setTitle(`🏆  ${title}  🏆`)
       .setColor(`${data.color}`)
       .setThumbnail(`${data.thumbnail}`)
       .setDescription(`Let's see who played better.`)

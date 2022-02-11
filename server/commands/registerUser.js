@@ -1,7 +1,7 @@
 'use strict';
 
 const User = require('../models/userModel');
-const embedMaker = require('../../public/embedMaker.js');
+const embedMaker = require('../../data/embedMaker.js');
 const getPuuid = require('../util/setPuuidHelper.js');
 
 module.exports = {
