@@ -88,14 +88,11 @@ client.on('messageCreate', async (message) => {
     client.commands.get('SIGNUP').execute(message);
   }
 
-  else if (command === 'TEST') {
-    client.commands.get('TEST').execute(message, userInput, Discord);
-  }
-
   else if (command === 'REGISTER') {
+    let userName = nameParser(userInput);
     let registerInfo = {
       game: userInput[0],
-      inGameName: userInput[1],
+      inGameName: userName,
       tagline: userInput[2], // used to register for puuid using Valorant API
     };
     client.commands.get('REGISTER').execute(message, registerInfo);
@@ -106,5 +103,11 @@ client.on('messageCreate', async (message) => {
     message.channel.send({ embeds: [embed] })
   }
 });
+
+function nameParser(inputArray) {
+  let userName = inputArray.find(elm => elm.startsWith('<') && elm.endsWith('>')) ||
+    inputArray.slice(inputArray.indexOf(inputArray.find(elm => elm.startsWith('<'))), inputArray.indexOf(inputArray.find(elm => elm.endsWith('>'))) + 1).join(' ');
+  return userName.slice(1, userName.length - 1);
+}
 
 client.login(process.env.DIS_TOKEN);
