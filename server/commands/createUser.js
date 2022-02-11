@@ -7,7 +7,6 @@ module.exports = {
   description: 'Creates new user in database',
   async execute(message) {
     try {
-      console.log(message);
       let newUser = await User.create({ _id: message.msgAuthor, name: message.author.username });
       message.channel.send(`${newUser.name} was created`);
     } catch (e) {

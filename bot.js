@@ -33,7 +33,7 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-const prefix = '$diss';
+const prefix = '$diss ';
 
 client.on('messageCreate', async (message) => {
   message.msgAuthor = message.author.id;
@@ -42,13 +42,16 @@ client.on('messageCreate', async (message) => {
   // returns if the bot is making the command to avoid infinite loops, or if the message does not start with the correct prefix '$diss'
   if (!message.content.startsWith(prefix) || message.author.bot) return; 
   // the word directly after the prefix '$diss' becomes the command
+  if (messageContentArray.length < 2) {
+    let embed = embedMaker(`You're too lazy to type in a command? Come on, help me out here...`);
+    message.channel.send({ embeds: [embed] });
+    return;
+  }
   const command = messageContentArray.splice(0, 2)[1].toUpperCase();
   // and the words following that are used as user input
   const userInput = messageContentArray;
 
-  if (!command) await message.reply('Please use one of the following commands: roast, meme, game');
-
-  else if (command === 'HELP') {
+  if (command === 'HELP') {
     client.commands.get('HELP').execute(message, userInput, Discord);
   }
 
