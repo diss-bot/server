@@ -5,12 +5,15 @@ const getStatsHelper = require('./getStatsHelper.js');
 const getUserDbHelper = require('./getUserDbHelper.js');
 const updateDbStatsHelper = require('./updateDbStatsHelper.js');
 
-let data = require('../../public/embed.json');
+const embedMaker = require('../../public/embedMaker.js');
 
+let data = require('../../public/embed.json');
 let roast = require('../../public/roast.js');
 
 module.exports = async (message, game, usersToCompare) => {
   try {
+    if (!usersToCompare.userOne) return embedMaker(`You need to stop playing with yourself and get some friends, try using "$diss vs < game > < @discord nickname >" bozo!`);
+
     let finalArr = [];
     let userArray = [{
       gameName: game,
@@ -22,10 +25,12 @@ module.exports = async (message, game, usersToCompare) => {
     })
 
     for (let user of userArray) {
+      console.log(user.gameName);
+      if (user.gameName !== 'lol') return embedMaker('What the heck is that? Try one of the games I actually support like League, TFT, or Valorant');
       if (user.discordId) {
         let userFromDb = await getUserDbHelper(user.discordId); // getting puuid from database using the discordId, which is unique
-        if (!userFromDb) return new Error(`You don't exist in my database, try the "$diss help" command to figure yourself out.`);
-        if (!userFromDb.puuid) return new Error(`You need to register so I can track your stats... and insult you accordingly. Try "$diss help" for more info.`);
+        if (!userFromDb) return embedMaker(`You don't exist in my database, try the "$diss help" command to figure yourself out.`);
+        if (!userFromDb.puuid) return embedMaker(`You need to register so I can track your stats... and insult you accordingly. Try "$diss help" for more info.`);
         user.puuid = userFromDb.puuid;
         user.name = userFromDb.name;
 
