@@ -2,7 +2,7 @@
 
 diss-bot is a Discord bot that is deployed on Heroku with a MongoDB database.
 
-![data Flow](/UML.jpg)
+![data Flow](/images/UML.jpg)
 
 ## Installation
 
@@ -12,11 +12,12 @@ run `npm install`
 
 ## Usage
 
-Click the link below and add it to any discord channel you have permissions to.
+Click the link below and add it to any discord channel you have permissions to: <br />
 https://discord.com/api/oauth2/authorize?client_id=939245133881278504&permissions=83968&scope=bot
 
-## Routes
+### The page you land on should look something like this...
 
+![diss-bot invite help](/images/diss-bot-example.jpg)
 
 ## Features
 
@@ -38,7 +39,7 @@ https://discord.com/api/oauth2/authorize?client_id=939245133881278504&permission
 
 - **Help**
   - **$diss help**
-  - If you are stuck and don't know what your doing, user this command.
+  - If you are stuck and don't know what you're doing, use this command.
 
 ## Created by:
 

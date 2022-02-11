@@ -8,7 +8,7 @@ dissBotIntents.add('GUILDS', 'GUILD_MESSAGES', 'GUILD_PRESENCES');
 const client = new Discord.Client({ intents: dissBotIntents });
 
 // use this to create and use an embed
-const embedMaker = require('./public/embedMaker.js');
+const embedMaker = require('./data/embedMaker.js');
 
 // connects to MongoDB containing all the Users' data
 const mongoose = require('mongoose');
@@ -90,10 +90,11 @@ client.on('messageCreate', async (message) => {
 
   else if (command === 'REGISTER') {
     let userName = nameParser(userInput);
+    let parsedTagline = taglineParser(userInput);
     let registerInfo = {
       game: userInput[0],
       inGameName: userName,
-      tagline: userInput[2], // used to register for puuid using Valorant API
+      tagline: parsedTagline, // used to register for puuid using Valorant API
     };
     client.commands.get('REGISTER').execute(message, registerInfo);
   }
@@ -108,6 +109,12 @@ function nameParser(inputArray) {
   let userName = inputArray.find(elm => elm.startsWith('<') && elm.endsWith('>')) ||
     inputArray.slice(inputArray.indexOf(inputArray.find(elm => elm.startsWith('<'))), inputArray.indexOf(inputArray.find(elm => elm.endsWith('>'))) + 1).join(' ');
   return userName.slice(1, userName.length - 1);
+}
+
+function taglineParser(inputArray) {
+  let tagline = inputArray.find(elm => elm.startsWith('[') && elm.endsWith(']')) ||
+    inputArray.slice(inputArray.indexOf(inputArray.find(elm => elm.startsWith('['))), inputArray.indexOf(inputArray.find(elm => elm.endsWith(']'))) + 1).join(' ');
+  return tagline.slice(1, tagline.length - 1);
 }
 
 client.login(process.env.DIS_TOKEN);

@@ -1,7 +1,7 @@
 'use strict'
 
-let data = require('../../public/embed.json');
-let helpData = require('../../public/help.json');
+let data = require('../../data/embed.json');
+let helpData = require('../../data/help.json');
 
 module.exports = {
   name: 'HELP',

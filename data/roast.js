@@ -41,17 +41,18 @@ module.exports = function (kindOfRoast, arrayOfPlayers) {
 
   ]
 
-  let genericRoasts = [
+  let tftRoasts = [
 
     "Do you even have fingers?",
-    "You're a disgrace to the game.",
+    "Your brain has 2 parts, left and right. But your right brain has nothing left and your left brain has nothing right.",
     "(1) Preheat the oven to 375 degrees Fahrenheit. (2) Cut the 'user' into small, even pieces. (3) Spread the 'user' onto a baking sheet and roast for 10-12 minutes, or until the 'user' is golden brown and slightly crispy. (4) Enjoy!",
     "How are you so bad at a kids game?",
     "It's not letting me press E to take over this BOT!",
     "I think you should try picking up a new hobby.",
     "If underperforming was a job you'd be a millionare!",
     "You're the best player besides every other player I've ever met.",
-    " Do you want a participation trophy?"
+    "Do you want a participation trophy?",
+    "If you could throw baseballs half as fast as you threw this game, you could be a pitcher in the MLB.",
 
   ]
 
@@ -123,8 +124,8 @@ module.exports = function (kindOfRoast, arrayOfPlayers) {
     return teamLoss[numGen()];
   }
 
-  else if (kindOfRoast === 'genericRoasts') {
-    return genericRoasts[numGen()];
+  else if (kindOfRoast === 'tftRoasts') {
+    return tftRoasts[numGen()];
   }
 
   else if (kindOfRoast === 'compare2Players') {

@@ -36,7 +36,6 @@ module.exports = async function (userStatsObject) {
 
     if (userStatsObject.latestMatches.tftLatestMatch === matchId) return; // needs to be return to prevent dupe data
 
-    console.log('RIGHT HERE M8', userStatsObject);
     let avgPlacement = avgPlacementCalc((tftSTATS.placements + placement), (userStatsObject.matchesPlayed.tftMatchesPlayed + 1));
 
     await User.findByIdAndUpdate(userStatsObject.discordId, {
