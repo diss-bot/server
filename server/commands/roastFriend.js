@@ -6,60 +6,60 @@ const getUserDbHelper = require('../util/getUserDbHelper.js');
 
 let embedData = require('../../public/embed.json');
 let roasts = require('../../public/roast.js');
-let numGen = require('../util/numGen');
+let embedMaker = require('../../public/embedMaker.js');
 
 module.exports = {
   name: 'ROAST',
   description: 'Gets latest stats for diss-bot users',
   async execute(message, game, userToRoast) {
-    let user = await getUserDbHelper(userToRoast);
-    let requestObj = {
-      gameName: game,
-      puuid: user.puuid,
-    }
-    let data = await getStatsHelper(requestObj)
     if (game.toUpperCase() === 'LOL') {
-      let {kills, deaths, assists, kda, win} = data;
-      // message.channel.send(`${kills} ${deaths} ${assists} ${kda} ${win}`);
-      
-     let roast = (kda, win) => {
+      let user = await getUserDbHelper(userToRoast);
+      if (!user) {
+        message.channel.send({ embeds: [embedMaker(`I couldn't find stats on this scrub, that's your bad.`)] })
+        return;
+      }
+      let requestObj = {
+        gameName: game,
+        puuid: user.puuid,
+      }
+      let data = await getStatsHelper(requestObj)
+      if (!data.kills) {
+        message.channel.send({ embeds: [embedMaker(`I couldn't find stats on this scrub, that's your bad.`)] })
+        return;
+      }
+      let { kills, deaths, assists, kda, win } = data;
+
+      let roast = (kda, win) => {
         if (kda < 1) {
-          console.log(roasts(`leagueRoasts`));
           return roasts(`leagueRoasts`);
-          
         } else if (win === false) {
-          console.log(roasts(`teamLoss`));
           return roasts(`teamLoss`);
         } else {
-          console.log(roasts(`wins`));
           return roasts(`wins`);
         };
-        
       }
-      console.log(roast);
 
       const embed = new Discord.MessageEmbed()
-      .setTitle("roast")
-      .setColor(`${embedData.color}`)
-      .setThumbnail(`${embedData.thumbnail}`)
-      .setDescription(`Let's see who played better.`)
-      .addFields(
-        { name: `Kills:`, value: `${kills}` },
-        { name: `Deaths:`, value: `${deaths}` },
-        { name: `Assists:`, value: `${assists}` },
-        { name: `KDA:`, value: `${kda}` },
-        { name: `Win:`, value: `${win}` },
-        { name: `Response`, value: `${roast(kda, win)}` },
-      );
-    message.channel.send({embeds: [embed]});
+        .setTitle("🔥   Fire up the grill   🔥")
+        .setColor(`${embedData.color}`)
+        .setThumbnail(`${embedData.thumbnail}`)
+        .addFields(
+          { name: `Kills:`, value: `${kills}` },
+          { name: `Deaths:`, value: `${deaths}` },
+          { name: `Assists:`, value: `${assists}` },
+          { name: `KDA:`, value: `${kda}` },
+          { name: `Win:`, value: `${win}` },
+          { name: `Roast:`, value: `${roast(kda, win)}` },
+        );
+      message.channel.send({ embeds: [embed] });
     }
-    else if (game.toUpperCase() === 'TFT') {
-      console.log(data);
-      let {placement, players_eliminated, win} = data;
-      message.channel.send(`${placement} ${players_eliminated} ${win}`);
-    }
+    // else if (game.toUpperCase() === 'TFT') {
+    //   console.log(data);
+    //   let {placement, players_eliminated, win} = data;
+    //   message.channel.send(`${placement} ${players_eliminated} ${win}`);
+    // }
     else {
-      message.channel.send(`You're trying to roast somebody but you typed it in wrong? Come on you scrub.`)
+      message.channel.send({ embeds: [embedMaker('No dice, you probably entered something wrong.')] })
     }
   },
 };
