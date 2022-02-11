@@ -12,20 +12,6 @@ const getLolGameInfo = require('../server/util/League/getLolGameInfo.js');
 const setPuuidHelper = require('../server/util/setPuuidHelper.js');
 const updateDbStatsHelper = require('../server/util/updateDbStatsHelper.js');
 
-// jest.mock('discord.js', () => {
-//   return {
-//     MessageEmbed: jest.fn().mockImplementation(() => {
-//       return {
-//         setTitle: jest.fn(),
-//         setColor: jest.fn(),
-//         setThumbnail: jest.fn(),
-//         setDescriptions: jest.fn(),
-//         addFields: jest.fn()
-//       }
-//     })
-//   }
-// });
-
 describe(`Will test bot's ability to get latest User stats and update MongoDB`, () => {
 
   it('Calls User.find when using getUserDbHelper function, and returns a user instance', async () => {
@@ -42,7 +28,6 @@ describe(`Will test bot's ability to get latest User stats and update MongoDB`, 
     }]);
 
     let user = await getUserDbHelper('test');
-    // console.log("User:", user);
     expect(User.find).toHaveBeenCalledTimes(1);
     expect(User.find).toHaveBeenCalledWith({ _id: 'test' });
     expect(user.games).toBeDefined();
@@ -148,7 +133,7 @@ describe(`Will test bot's ability to get latest User stats and update MongoDB`, 
       _id: 'fakeTestId',
       name: 'tester',
       puuid: 'testingPUUID',
-      __v: 0
+      __v: 0,
     });
 
     let userStatsObject = {
@@ -161,6 +146,9 @@ describe(`Will test bot's ability to get latest User stats and update MongoDB`, 
       latestMatches: {
         lolLatestMatch: '0',
         tftLatestMatch: '0',
+      },
+      matchesPlayed: {
+        tftMatchesPlayed: 0,
       },
         games: {
           LeagueOfLegends: {
@@ -201,25 +189,6 @@ describe(`Will test bot's ability to get latest User stats and update MongoDB`, 
     
      };
     await updateDbStatsHelper(userStatsObject);
-    expect(User.findByIdAndUpdate).toHaveBeenCalledTimes(1);
+    expect(User.findByIdAndUpdate).toHaveBeenCalledTimes(2);
   });
-
-  // it('Should respond with 200 on a get method, and the data should be updated upon doing another get request', async () => {
-  //   await request.put('/game/2').send({
-  //     name: 'Mortal Chombat',
-  //     year: '1995',
-  //   });
-
-  //   const response = await request.get('/game/2');
-
-  //   expect(response.status).toEqual(200);
-  //   expect(response.body.results[0].name).toEqual('Mortal Chombat');
-  //   expect(response.body.count).toEqual(1);
-  // });
-
-  // it('Should response with a 204 upon destorying a record, and querying for that data should result in not finding a record', async () => {
-  //   const response = await request.delete('/game/1');
-
-  //   expect(response.status).toEqual(204);
-  // });
 });
